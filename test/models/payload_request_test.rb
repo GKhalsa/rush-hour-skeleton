@@ -6,8 +6,8 @@ class PayloadRequestTest < Minitest::Test
 
   def test_it_assigns_attributes_properly
     create_payloads(1)
-    id = PayloadRequest.all[-1].id
-    payload = PayloadRequest.find(id)
+    payload = PayloadRequest.last
+
 
     assert_equal "http://jumpstartlab1.com/blog", payload.url
     assert_equal  Time.parse("2013-02-16 21:38:28 -0700"), payload.requested_at

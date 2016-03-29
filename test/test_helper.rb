@@ -38,6 +38,12 @@ module TestHelpers
               :resolution_height => "1280#{i + 1}",
               :ip                => "63.29.38.211"
                                })
-      end
     end
   end
+
+  def create_referrers(num, address)
+    num.times do
+      Referrer.create({:url => "#{address}"})
+    end
+  end
+end
