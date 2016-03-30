@@ -18,6 +18,11 @@ DatabaseCleaner.strategy = :truncation, {except: %w[public.schema_migrations]}
 
 module TestHelpers
 
+  def setup
+    DatabaseCleaner.start
+    super
+  end
+
   def teardown
     DatabaseCleaner.clean
     super
@@ -40,9 +45,4 @@ module TestHelpers
     end
   end
 
-  # def create_referrers(num, address)
-  #   num.times do
-  #     Referrer.create({:url => "#{address}"})
-  #   end
-  # end
 end
