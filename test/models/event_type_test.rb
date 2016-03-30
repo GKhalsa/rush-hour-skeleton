@@ -1,6 +1,6 @@
 require_relative '../test_helper'
 
-class EventTTest < Minitest::Test
+class EventTest < Minitest::Test
   include TestHelpers
 
   def test_it_knows_its_event_type
