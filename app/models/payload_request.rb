@@ -15,4 +15,5 @@ class PayloadRequest < ActiveRecord::Base
   belongs_to :request_type
   belongs_to :resolution
   belongs_to :user_agent
+  belongs_to :event_type
 end
