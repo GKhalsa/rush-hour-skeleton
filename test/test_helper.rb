@@ -28,7 +28,7 @@ module TestHelpers
       PayloadRequest.create({
         :url            => Url.create(address: "http://jumpstartlab#{i + 1}.com/blog"),
         :requested_at   => "2013-02-16 21:38:28 -0700",
-        :responded_in   => 37,
+        :responded_in   => (37 + i),
         :referrer       => Referrer.create(address: "http://jumpstartlab#{i + 1}.com"),
         :request_type   => RequestType.create(name: "GET"),
         :parameters     => "d#{i + 1} ",
