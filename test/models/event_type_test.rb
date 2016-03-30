@@ -17,6 +17,6 @@ class EventTest < Minitest::Test
     create_payloads(3)
     PayloadRequest.last.event_type.update(name: "socialLogin1")
 
-    assert_equal "", EventType.rank_events
+    assert_equal ["socialLogin1", "socialLogin2"], EventType.rank_events
   end
 end

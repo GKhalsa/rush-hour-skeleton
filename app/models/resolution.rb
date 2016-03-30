@@ -2,9 +2,9 @@ require 'pry'
 class Resolution < ActiveRecord::Base
   validates :width,   presence: true
   validates :height,  presence: true
-  has_many :payload_request
+  has_many :payload_requests
 
-  def self.resolution_breakdown
+  def self.breakdown
     group(:width, :height).count
   end
 

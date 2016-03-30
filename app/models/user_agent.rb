@@ -1,7 +1,7 @@
 class UserAgent < ActiveRecord::Base
   validates :browser, presence: true
   validates :os,      presence: true
-  has_many :payload_request
+  has_many :payload_requests
 
   def self.browser_breakdown
     group(:browser).count

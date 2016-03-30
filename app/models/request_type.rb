@@ -1,6 +1,6 @@
 class RequestType < ActiveRecord::Base
   validates :name, presence: true
-  has_many :payload_request
+  has_many :payload_requests
 
   def self.most_frequent
     group('request_types.id').order(:name).limit(1).pluck(:name).first

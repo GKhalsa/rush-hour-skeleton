@@ -20,6 +20,6 @@ class ResolutionTest < Minitest::Test
   def test_breakdown_of_screen_resolutions
     create_payloads(3)
 
-    assert_equal "", Resolution.resolution_breakdown
+    assert_equal({[1921, 1281]=>1, [1922, 1282]=>1, [1923, 1283]=>1}, Resolution.breakdown)
   end
 end

@@ -17,8 +17,8 @@ class PayloadRequestTest < Minitest::Test
     assert_equal  "socialLogin1", payload.event_type.name
     assert_equal  "Macintosh", payload.user_agent.os
     assert_equal  "Mozilla/5.0", payload.user_agent.browser
-    assert_equal  19201, payload.resolution.width
-    assert_equal  12801, payload.resolution.height
+    assert_equal  1921, payload.resolution.width
+    assert_equal  1281, payload.resolution.height
     assert_equal  "63.29.38.211", payload.ip.to_s
 
     assert_equal 1, PayloadRequest.count
