@@ -20,7 +20,6 @@ class Url < ActiveRecord::Base
 
   def average_response_time
     payload_requests.average(:responded_in)
-
   end
 
   def verbs
@@ -35,6 +34,7 @@ class Url < ActiveRecord::Base
     user_agents.order(browser: :desc, os: :desc).pluck(:browser, :os).uniq.take(3)
   end
 
-
-
+  def self.ranked
+    uniq.group('urls.id').order(:address).pluck(:address)
+  end
 end

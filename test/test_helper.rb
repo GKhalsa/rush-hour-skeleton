@@ -18,7 +18,7 @@ DatabaseCleaner.strategy = :truncation, {except: %w[public.schema_migrations]}
 
 module TestHelpers
 
-  def set_up
+  def setup
     DatabaseCleaner.start
     super
   end

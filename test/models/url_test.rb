@@ -122,5 +122,10 @@ class UrlTest < Minitest::Test
 
   end
 
+  def test_it_can_rank_urls
+    create_payloads(3)
+    PayloadRequest.last.url.update(address: "http://jumpstartlab1.com/blog")
 
+    assert_equal ["http://jumpstartlab1.com/blog", "http://jumpstartlab2.com/blog"], Url.ranked
+  end
 end

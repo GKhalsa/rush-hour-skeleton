@@ -16,4 +16,10 @@ class ResolutionTest < Minitest::Test
 
     refute resolution.valid?
   end
+
+  def test_breakdown_of_screen_resolutions
+    create_payloads(3)
+
+    assert_equal "", Resolution.resolution_breakdown
+  end
 end
