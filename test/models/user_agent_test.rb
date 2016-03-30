@@ -1,5 +1,5 @@
 require_relative '../test_helper'
-
+require 'pry'
 class UserAgentTest < Minitest::Test
   include TestHelpers
 
@@ -16,16 +16,17 @@ class UserAgentTest < Minitest::Test
   end
 
   def test_it_can_provide_browser_breakdown
-    create_payloads(3)
-    PayloadRequest.last.user_agent.update(browser: "Chrome")
 
-    assert_equal({"Mozilla/5.0"=>2, "Chrome"=>1}, UserAgent.browser_breakdown)
+    create_payloads(10)
+
+    assert_equal({1=>10}, UserAgent.browser_breakdown)
   end
 
   def test_it_can_provide_an_os_breakdown
     create_payloads(3)
     PayloadRequest.last.user_agent.update(os: "Windows")
+    expected = {"Macintosh"=>2, "Windows"=>1}
 
-    assert_equal({"Macintosh"=>2, "Windows"=>1},UserAgent.os_breakdown)
+    assert_equal expected, UserAgent.os_breakdown
   end
 end
