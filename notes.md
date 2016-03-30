@@ -39,7 +39,7 @@ iteration 2 notes:
       #class method on Resolution; FETCH ?
     10. Events listed from most received to least.
       #class method on EventType or maybe PayloadRequest; ORDER? desc?
-  URL instance methods needed: 
+  URL instance methods needed:
     1.  Max Response time
       #instance method; select response times and MAX
     2.  Min Response time
