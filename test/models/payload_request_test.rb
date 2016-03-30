@@ -33,7 +33,21 @@ class PayloadRequestTest < Minitest::Test
       :url_id => "http://jumpstartlab.com/blog",
       })
     assert_equal 1, PayloadRequest.count
+  end
 
+  def test_can_gather_average_response_times_across_requests
+    create_payloads(3)
+    assert_equal 38, PayloadRequest.average_response_time
+  end
+
+  def test_it_returns_max_response_time_across_all_requests
+    create_payloads(3)
+    assert_equal 39, PayloadRequest.max_response_time
+  end
+
+  def test_it_returns_min_response_time_across_all_requests
+    create_payloads(3)
+    assert_equal 37, PayloadRequest.min_response_time
   end
 
 end
