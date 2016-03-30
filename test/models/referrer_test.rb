@@ -3,14 +3,14 @@ require_relative '../test_helper'
 class ReferrerTest < Minitest::Test
   include TestHelpers
 
-  def test_it_knows_its_url
-    referrer = Referrer.create({:url => "http://www.google.com"})
+  def test_it_knows_its_address
+    referrer = Referrer.create({:address => "http://www.google.com"})
 
-    assert_equal "http://www.google.com", referrer.url
+    assert_equal "http://www.google.com", referrer.address
   end
 
-  def test_is_invalid_with_missing_url
-    referrer = Referrer.create(url: "")
+  def test_is_invalid_with_missing_address
+    referrer = Referrer.create(address: "")
 
     refute referrer.valid?
   end
