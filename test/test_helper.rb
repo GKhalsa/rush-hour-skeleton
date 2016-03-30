@@ -34,7 +34,7 @@ module TestHelpers
         :parameters     => "d#{i + 1} ",
         :event_type     => EventType.create(name: "socialLogin#{i + 1}"),
         :user_agent     => UserAgent.create(browser: "Mozilla/5.0", os: "Macintosh"),
-        :resolution     => Resolution.create(width: "1920#{i + 1}", height: "1280#{i + 1}"),
+        :resolution     => Resolution.create(width: "#{i + 1 + 1920}", height: "#{i + 1 + 1280}"),
         :ip             => "63.29.38.211"
         })
     end
