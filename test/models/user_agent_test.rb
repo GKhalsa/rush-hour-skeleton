@@ -16,15 +16,24 @@ class UserAgentTest < Minitest::Test
   end
 
   def test_it_can_provide_browser_breakdown
+    create_payloads(3)
+    user_agent1 = UserAgent.create(browser: "Chrome", os: "Macintosh")
+    user_agent2 = UserAgent.create(browser: "Mozilla", os: "Windows")
+    PayloadRequest.all[0].update(user_agent_id: user_agent1.id)
+    PayloadRequest.all[1].update(user_agent_id: user_agent2.id)
 
-    create_payloads(10)
+    expected = {"Mozilla"=>2, "Chrome"=>1}
 
-    assert_equal({1=>10}, UserAgent.browser_breakdown)
+    assert_equal expected, UserAgent.browser_breakdown
   end
 
   def test_it_can_provide_an_os_breakdown
     create_payloads(3)
-    PayloadRequest.last.user_agent.update(os: "Windows")
+    user_agent1 = UserAgent.create(browser: "Chrome", os: "Windows")
+    user_agent2 = UserAgent.create(browser: "Mozilla", os: "Macintosh")
+    PayloadRequest.all[0].update(user_agent_id: user_agent1.id)
+    PayloadRequest.all[1].update(user_agent_id: user_agent2.id)
+
     expected = {"Macintosh"=>2, "Windows"=>1}
 
     assert_equal expected, UserAgent.os_breakdown
