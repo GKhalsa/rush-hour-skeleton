@@ -6,16 +6,15 @@ module RushHour
 
     post '/sources' do
       client = Client.new(params[:client])
-      if client.save == true
+      if client.save
         status 200
         body "#{client.identifier}:#{client.root_url}"
-      elsif client.errors.include?(:identifer)
+      elsif client.errors.messages[:identifier] == ["has already been taken"]
         status 403
-        body client.errors.full_message.join
+        body client.errors.full_messages.join(", ")
       else
-        binding.pry
         status 400
-        body client.errors.full_message.join(", ")
+        body client.errors.full_messages.join(", ")
       end
     end
 
