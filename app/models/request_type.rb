@@ -3,7 +3,9 @@ class RequestType < ActiveRecord::Base
   has_many :payload_requests
 
   def self.most_frequent
-    group('request_types.id').order(:name).limit(1).pluck(:name).first
+    all.max_by do |verb|
+      verb.payload_requests.count
+    end.name
   end
 
   def self.all_verbs
