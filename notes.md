@@ -1,4 +1,7 @@
-Each time you git pull:
+To create new migration:
+rake db:create_migration NAME=create_clients
+
+Each time you git pull when you pull new migration files/after creating new migration and entering table information into migration file:
   step 1 => rake db:migrate => for setting up development database
   step 2 => rake db:migrate RACK_ENV=test  => for setting up test database
 
