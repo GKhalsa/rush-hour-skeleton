@@ -4,10 +4,18 @@ class UserAgent < ActiveRecord::Base
   has_many :payload_requests
 
   def self.browser_breakdown
-    group(:browser).count
+    user_agents = PayloadRequest.group(:user_agent).count
+    user_agents.reduce(Hash.new(0)) do |new_hash, v|
+      new_hash[v[0].browser] += v[1]
+      new_hash
+    end
   end
 
   def self.os_breakdown
-    group(:os).count
+    user_agents = PayloadRequest.group(:user_agent).count
+    user_agents.reduce(Hash.new(0)) do |new_hash, v|
+      new_hash[v[0].os] += v[1]
+      new_hash
+    end
   end
 end

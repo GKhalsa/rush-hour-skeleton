@@ -14,8 +14,4 @@ class ReferrerTest < Minitest::Test
 
     refute referrer.valid?
   end
-
-  def test_its_association_knows_the_three_most_popular_referrers
-    skip
-  end
 end

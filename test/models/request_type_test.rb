@@ -16,14 +16,18 @@ class RequestTypeTest < Minitest::Test
 
   def test_it_can_return_the_most_frequent_request_type
     create_payloads(3)
-    PayloadRequest.last.request_type.update(name: "PUT")
-
+    request = RequestType.create(name: "PUT")
+    PayloadRequest.all[0].update(request_type_id: request.id)
     assert_equal "GET", RequestType.most_frequent
+
+    PayloadRequest.all[1].update(request_type_id: request.id)
+    assert_equal "PUT", RequestType.most_frequent
   end
 
   def test_it_can_return_all_of_the_http_verbs_used
     create_payloads(3)
-    PayloadRequest.last.request_type.update(name: "PUT")
+    request = RequestType.create(name: "PUT")
+    PayloadRequest.all[0].update(request_type_id: request.id)
 
     assert_equal ["GET","PUT"], RequestType.all_verbs
   end
