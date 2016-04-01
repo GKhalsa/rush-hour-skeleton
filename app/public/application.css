@@ -1,0 +1,23 @@
+.rush_hour_app {
+  background-image: url('images/traffic_lines.jpg');
+  background-size: cover;
+}
+.red_overlay {
+  background-color: rgba(221, 30, 30, 0.41)
+}
+.card_overlay {
+  background-color: rgba(57, 69, 66, 0.66)
+}
+.move_over {
+  margin-left: 6%
+}
+.be_centered {
+  padding-top: 10px
+}
+.wider {
+  position: fixed;
+  align-content: flex-end;
+}
+.round_card {
+  border-radius: 8%
+}

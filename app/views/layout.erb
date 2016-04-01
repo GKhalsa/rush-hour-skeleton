@@ -1,0 +1,53 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rush Hour</title>
+  <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link rel="stylesheet" href="application.css">
+</head>
+<body class="rush_hour_app">
+  <nav class="red_overlay">
+    <div class="nav-wrapper">
+      <h3 class="valign-wrapper move_over be_centered">Rush Hour</h3>
+    <!-- this is navbar links, it might go in a partial   -->
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#">Sign up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- this is the center card, it goes on the welcome page -->
+    <div class="row wider">
+      <div class="col s9 m5">
+        <div class="card-panel card_overlay round_card card-large">
+          <h1>Hello WORLD</h1>
+          <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+          </span>
+        </div>
+      </div>
+
+      <!-- this is the side-bar, put it in the partial _url -->
+      <div class="col s2 right-align">
+          <div class="collection red_overlay center-align">
+            <p class="white-text" > (root_name) pages</p>
+            <a href="#!" class="collection-item">each page name</a>
+            <a href="#!" class="collection-item">each page name</a>
+            <a href="#!" class="collection-item">each page name</a>
+            <a href="#!" class="collection-item">each page name</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- <%= yield %> -->
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</body>
+</html>
