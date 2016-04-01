@@ -15,11 +15,13 @@ class PayloadBuilder
     @resolutionwidth  = parsed['resolutionWidth']
     @resolutionheight = parsed['resolutionHeight']
     @ip               = parsed['ip']
+    @identifier       = params['IDENTIFIER']
+    @root_url         = params['captures']
     create_payload
   end
 
   def create_payload
-    payload_request = PayloadRequest.new({
+    payload_request = PayloadRequest.create({
       :url            => Url.find_or_create_by(address: @url),
       :requested_at   => @requested_at,
       :responded_in   => @responded_in,
@@ -30,14 +32,19 @@ class PayloadBuilder
       :user_agent     => UserAgent.find_or_create_by(browser: parse_user_agent_browser, os: parse_user_agent_os),
       :resolution     => Resolution.find_or_create_by(width: @resolutionwidth, height: @resolutionheight),
       :ip             => @ip,
-      :client         => Client.find_or_create_by(identifier: "JumpstartLab", root_url: "www.jumpstartlab com")
+      :client         => Client.find_or_create_by(identifier: @identifier, root_url: @root_url)
       })
-    if payload_request.save
-      [200, "Success!"]
-    else
-      binding.pry
-      [400, "No args"]
-    end
+      # if missing payload, return a 400
+      # if we already received a request, return 403
+      # if the application is not registered, return 403
+      # if succes, return 200
+
+
+    # if payload_request.save
+    #   [200, "Success!"]
+    # else
+    #   [400, "No args"]
+    # end
   end
 
   def parse_user_agent_browser

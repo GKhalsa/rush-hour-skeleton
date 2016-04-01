@@ -23,7 +23,6 @@ module RushHour
 
     post '/sources/:IDENTIFIER/data' do |identifier|
       payload_request = PayloadBuilder.new(params)
-      binding.pry
 
       payload_request
 

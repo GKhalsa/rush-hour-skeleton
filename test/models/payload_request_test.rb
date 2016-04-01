@@ -9,7 +9,7 @@ class PayloadRequestTest < Minitest::Test
     payload = PayloadRequest.last
 
     assert_equal "http://jumpstartlab1.com/blog", payload.url.address
-    assert_equal  Time.parse("2013-02-16 21:38:28 -0700"), payload.requested_at
+    assert_equal  Time.parse("2013-02-17 04:38:28 UTC"), payload.requested_at
     assert_equal  37, payload.responded_in
     assert_equal  "http://jumpstartlab1.com", payload.referrer.address
     assert_equal  "GET", payload.request_type.name
@@ -33,6 +33,22 @@ class PayloadRequestTest < Minitest::Test
       :url_id => "http://jumpstartlab.com/blog",
       })
     assert_equal 1, PayloadRequest.count
+
+    PayloadRequest.create({
+      :url            => Url.find_or_create_by(address: "http://jumpstartlab1.com/blog"),
+      :requested_at   => "2013-02-16 21:38:28 -0700",
+      :responded_in   => 37,
+      :referrer       => Referrer.find_or_create_by(address: "http://jumpstartlab1.com"),
+      :request_type   => RequestType.find_or_create_by(name: "GET"),
+      :parameters     => "d1",
+      :event_type     => EventType.find_or_create_by(name: "socialLogin1"),
+      :user_agent     => UserAgent.find_or_create_by(browser: "Mozilla", os: "Macintosh"),
+      :resolution     => Resolution.find_or_create_by(width: "1921", height: "1281"),
+      :ip             => "63.29.38.211",
+      :client         => Client.find_or_create_by(identifier: "JumpstartLab", root_url: "www.jumpstartlab com"),
+      :sha            => "0"
+      })
+
   end
 
   def test_can_gather_average_response_times_across_requests

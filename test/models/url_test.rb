@@ -8,7 +8,7 @@ class UrlTest < Minitest::Test
     num.times do |i|
       PayloadRequest.create({
         :url            => Url.find_or_create_by(address: "http://jumpstartlab.com/blog"),
-        :requested_at   => "2013-02-16 21:38:28 -0700",
+        :requested_at   => "2013-02-16 21:38:2#{i} -0700",
         :responded_in   => (37 + i),
         :referrer       => Referrer.create(address: "http://jumpstartlab.com"),
         :request_type   => RequestType.find_or_create_by(name: "GET"),
