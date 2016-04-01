@@ -11,8 +11,7 @@ module RushHour
       # status, body = client_builder
       client = Client.new(params)
       if client.save
-        status 200
-        body "#{client.identifier}:#{client.root_url}"
+        [200, "#{client.identifier}:#{client.root_url}"]
       elsif client.errors.messages[:identifier] == ["has already been taken"]
         status 403
         body client.errors.full_messages.join(", ")
@@ -23,13 +22,12 @@ module RushHour
     end
 
     post '/sources/:IDENTIFIER/data' do |identifier|
+      payload_request = PayloadBuilder.new(params)
       binding.pry
 
-      payload = PayloadBuilder.new(params)
+      payload_request
 
-
-
-      "Hello world\n"
+      # PayloadBuilder.parse(params)
     end
 
   end

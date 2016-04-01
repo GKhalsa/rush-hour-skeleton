@@ -19,7 +19,7 @@ class PayloadBuilder
   end
 
   def create_payload
-    PayloadRequest.create({
+    payload_request = PayloadRequest.new({
       :url            => Url.find_or_create_by(address: @url),
       :requested_at   => @requested_at,
       :responded_in   => @responded_in,
@@ -32,6 +32,12 @@ class PayloadBuilder
       :ip             => @ip,
       :client         => Client.find_or_create_by(identifier: "JumpstartLab", root_url: "www.jumpstartlab com")
       })
+    if payload_request.save
+      [200, "Success!"]
+    else
+      binding.pry
+      [400, "No args"]
+    end
   end
 
   def parse_user_agent_browser
