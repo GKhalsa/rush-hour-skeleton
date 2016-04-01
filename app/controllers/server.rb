@@ -23,7 +23,11 @@ module RushHour
     end
 
     post '/sources/:IDENTIFIER/data' do |identifier|
+      binding.pry
+
       payload = PayloadBuilder.new(params)
+
+
 
       "Hello world\n"
     end
