@@ -6,7 +6,7 @@ class PayloadRequest < ActiveRecord::Base
   validates  :request_type_id, presence: true
   validates  :parameters,      presence: true
   validates  :event_type_id,   presence: true
-  validates  :user_agent_id,   presence: true
+  validates  :uagent_id,   presence: true
   validates  :resolution_id,   presence: true
   validates  :ip,              presence: true
 
@@ -14,7 +14,7 @@ class PayloadRequest < ActiveRecord::Base
   belongs_to :referrer
   belongs_to :request_type
   belongs_to :resolution
-  belongs_to :user_agent
+  belongs_to :uagent
   belongs_to :event_type
   belongs_to :client
 

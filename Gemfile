@@ -16,4 +16,5 @@ group :development, :test do
   # gem 'test-unit'
   gem 'pry'
   gem 'rake'
+  gem 'useragent'
 end

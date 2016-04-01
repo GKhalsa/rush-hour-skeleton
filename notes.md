@@ -34,10 +34,10 @@ iteration 2 notes:
       #class method on RequestType; FETCH.uniq ??
     6. List of URLs listed from most requested to least requested
       #class method on Url? or maybe PayloadRequest; ORDER? desc?
-    7. Web browser breakdown across all requests(userAgent)
-      #class method on UserAgent; I don't know what this means tho.
-    8. OS breakdown across all requests(userAgent)
-      #class method on UserAgent; I don't know what this means tho, again.
+    7. Web browser breakdown across all requests(UAgent)
+      #class method on UAgent; I don't know what this means tho.
+    8. OS breakdown across all requests(UAgent)
+      #class method on UAgent; I don't know what this means tho, again.
     9. Screen Resolutions across all requests (resolutionWidth x resolutionHeight)
       #class method on Resolution; FETCH ?
     10. Events listed from most received to least.

@@ -14,7 +14,7 @@ class UrlTest < Minitest::Test
         :request_type   => RequestType.find_or_create_by(name: "GET"),
         :parameters     => "d#{i + 1} ",
         :event_type     => EventType.create(name: "socialLogin#{i + 1}"),
-        :user_agent     => UserAgent.create(browser: "Mozilla/5.0", os: "Macintosh"),
+        :uagent     => UAgent.create(browser: "Mozilla/5.0", os: "Macintosh"),
         :resolution     => Resolution.create(width: "1920#{i + 1}", height: "1280#{i + 1}"),
         :ip             => "63.29.38.211"
         })
@@ -75,7 +75,7 @@ class UrlTest < Minitest::Test
       :request_type   => RequestType.find_or_create_by(name: "POST"),
       :parameters     => "d ",
       :event_type     => EventType.create(name: "socialLogin"),
-      :user_agent     => UserAgent.create(browser: "Mozilla/5.0", os: "Macintosh"),
+      :uagent     => UAgent.create(browser: "Mozilla/5.0", os: "Macintosh"),
       :resolution     => Resolution.create(width: "1920", height: "1280"),
       :ip             => "63.29.38.211"
       })
@@ -103,7 +103,7 @@ class UrlTest < Minitest::Test
     assert_equal best, url.best_referrers
   end
 
-  def test_returns_3_most_popular_user_agents
+  def test_returns_3_most_popular_uagents
     create_payload_for_url(10)
     url = PayloadRequest.first.url
     PayloadRequest.all[1].user_agent.update(browser: "Mozilla/2.0", os: "Macintosh")
@@ -118,7 +118,7 @@ class UrlTest < Minitest::Test
 
     top_three_best_agents = [["Mozilla/7.0", "MicroSoft"],["Mozilla/6.0", "Macintosh"],
       ["Mozilla/5.0", "Macintosh"]]
-    assert_equal top_three_best_agents, url.best_user_agents
+    assert_equal top_three_best_agents, url.best_uagents
 
   end
 

@@ -79,7 +79,7 @@
 </row>
 <row name="user_agent_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="user_agents" row="id" />
+<default>NULL</default><relation table="uagents" row="id" />
 </row>
 <row name="resolution_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -124,7 +124,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="962" y="352" name="user_agents">
+<table x="962" y="352" name="uagents">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>

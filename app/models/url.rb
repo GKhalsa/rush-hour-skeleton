@@ -4,7 +4,7 @@ class Url < ActiveRecord::Base
   has_many :payload_requests
   has_many :request_types, through: :payload_requests
   has_many :referrers, through: :payload_requests
-  has_many :user_agents, through: :payload_requests
+  has_many :uagents, through: :payload_requests
 
   def max_response_time
     payload_requests.maximum(:responded_in)
@@ -30,8 +30,8 @@ class Url < ActiveRecord::Base
     referrers.order(address: :desc).pluck(:address).uniq.take(3)
   end
 
-  def best_user_agents
-    user_agents.order(browser: :desc, os: :desc).pluck(:browser, :os).uniq.take(3)
+  def best_uagents
+    uagents.order(browser: :desc, os: :desc).pluck(:browser, :os).uniq.take(3)
   end
 
   def self.ranked
