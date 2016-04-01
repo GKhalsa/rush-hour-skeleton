@@ -6,7 +6,7 @@
   background-color: rgba(221, 30, 30, 0.41)
 }
 .card_overlay {
-  background-color: rgba(57, 69, 66, 0.66)
+  background-color: rgba(57, 69, 66, 0.82)
 }
 .move_over {
   margin-left: 6%
@@ -19,5 +19,20 @@
   align-content: flex-end;
 }
 .round_card {
-  border-radius: 8%
+  border-radius: 35px
+}
+.round_sidebar {
+  border-radius: 25px
+}
+
+.my_container {
+  width: 1200px;
+  height: 800px;
+  padding: 20px;
+  margin: 20px;
+  align-self: baseline;
+}
+
+.sign-up {
+  font-size: 2em;
 }
