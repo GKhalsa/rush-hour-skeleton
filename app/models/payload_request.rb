@@ -4,7 +4,6 @@ class PayloadRequest < ActiveRecord::Base
   validates  :responded_in,    presence: true
   validates  :referrer_id,     presence: true
   validates  :request_type_id, presence: true
-  validates  :parameters,      presence: true
   validates  :event_type_id,   presence: true
   validates  :user_agent_id,   presence: true
   validates  :resolution_id,   presence: true

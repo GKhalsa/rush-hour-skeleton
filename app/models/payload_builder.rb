@@ -1,3 +1,5 @@
+require 'user_agent_parser'
+
 class PayloadBuilder
   attr_reader :params
 
@@ -7,7 +9,7 @@ class PayloadBuilder
     @requested_at     = parsed['requestedAt']
     @responded_in     = parsed['respondedIn']
     @referred_by      = parsed['referredBy']
-    @request_type     = parsed['requestedType']
+    @request_type     = parsed['requestType']
     @event_name       = parsed['eventName']
     @user_agent       = parsed['userAgent']
     @resolutionwidth  = parsed['resolutionWidth']
@@ -33,19 +35,15 @@ class PayloadBuilder
   end
 
   def parse_user_agent_browser
-    string = @user_agent
-    user_agent = UserAgent.parse(string)
-    user_agent.browser
+    UserAgentParser.parse(@user_agent).to_s
   end
 
-  # def parse_user_agent_os
-  #   string = @user_agent
-  #   user_agent = UserAgent.parse(string)
-  #   user_agent.platform
-  # end
+  def parse_user_agent_os
+    UserAgentParser.parse(@user_agent).os.to_s
+  end
 
   def parse_params(params)
-    parsed = JSON.parse(params['payload'])
+    JSON.parse(params['payload'])
   end
 end
 
