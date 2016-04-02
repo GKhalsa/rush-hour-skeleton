@@ -8,7 +8,7 @@ class UrlTest < Minitest::Test
     num.times do |i|
       PayloadRequest.create({
         :url            => Url.find_or_create_by(address: "http://jumpstartlab.com/blog"),
-        :requested_at   => "2013-02-16 21:38:28 -0700",
+        :requested_at   => "2013-02-16 21:38:2#{i} -0700",
         :responded_in   => (37 + i),
         :referrer       => Referrer.create(address: "http://jumpstartlab.com"),
         :request_type   => RequestType.find_or_create_by(name: "GET"),
@@ -16,7 +16,8 @@ class UrlTest < Minitest::Test
         :event_type     => EventType.create(name: "socialLogin#{i + 1}"),
         :user_agent     => UserAgent.create(browser: "Mozilla/5.0", os: "Macintosh"),
         :resolution     => Resolution.create(width: "1920#{i + 1}", height: "1280#{i + 1}"),
-        :ip             => "63.29.38.211"
+        :ip             => "63.29.38.211",
+        :sha            => "#{i}"
         })
     end
   end
@@ -49,7 +50,6 @@ class UrlTest < Minitest::Test
 
   def test_it_returns_all_response_times_in_order
     create_payload_for_url(3)
-
     url = PayloadRequest.first.url
 
     assert_equal [39, 38, 37], url.ordered_response_times
@@ -77,7 +77,8 @@ class UrlTest < Minitest::Test
       :event_type     => EventType.create(name: "socialLogin"),
       :user_agent     => UserAgent.create(browser: "Mozilla/5.0", os: "Macintosh"),
       :resolution     => Resolution.create(width: "1920", height: "1280"),
-      :ip             => "63.29.38.211"
+      :ip             => "63.29.38.211",
+      :sha            => 3
       })
 
       url = PayloadRequest.first.url

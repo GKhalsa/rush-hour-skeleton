@@ -40,8 +40,9 @@ module TestHelpers
         :event_type     => EventType.find_or_create_by(name: "socialLogin#{i + 1}"),
         :user_agent     => UserAgent.find_or_create_by(browser: "Mozilla", os: "Macintosh"),
         :resolution     => Resolution.find_or_create_by(width: "#{i + 1 + 1920}", height: "#{i + 1 + 1280}"),
-        :ip             => "63.29.38.211"
-        # :client_id      => ?
+        :ip             => "63.29.38.211",
+        :client         => Client.find_or_create_by(identifier: "JumpstartLab", root_url: "www.jumpstartlab com"),
+        :sha            => "#{i}"
         })
     end
   end

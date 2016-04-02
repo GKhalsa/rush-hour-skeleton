@@ -4,6 +4,7 @@ gem 'sinatra', require: 'sinatra/base'
 gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+gem 'user_agent_parser'
 
 group :development, :test do
   gem 'shotgun'
@@ -13,7 +14,6 @@ group :development, :test do
   gem 'launchy'
   gem 'rack-test'
   gem 'database_cleaner'
-  # gem 'test-unit'
   gem 'pry'
   gem 'rake'
 end
