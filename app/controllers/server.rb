@@ -5,10 +5,6 @@ module RushHour
     end
 
     post '/sources' do
-      #
-      # client_builder = CLientBuilder.new(params)  => [200, "The </Body>"]
-      #
-      # status, body = client_builder
       client = Client.new(params)
       if client.save
         [200, "#{client.identifier}:#{client.root_url}"]
@@ -24,9 +20,8 @@ module RushHour
     post '/sources/:IDENTIFIER/data' do |identifier|
       payload_request = PayloadBuilder.new(params)
 
-      payload_request
-
-      # PayloadBuilder.parse(params)
+      status payload_request.status_id
+      body   payload_request.body
     end
 
   end

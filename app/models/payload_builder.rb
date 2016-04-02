@@ -1,7 +1,7 @@
 require 'user_agent_parser'
 
 class PayloadBuilder
-  attr_reader :params
+  attr_reader :status_id, :body
 
   def initialize(params)
     parsed            = parse_params(params)
@@ -17,11 +17,37 @@ class PayloadBuilder
     @ip               = parsed['ip']
     @identifier       = params['IDENTIFIER']
     @root_url         = params['captures']
-    create_payload
+    @sha              = Digest::SHA1.hexdigest(params['payload'])
+    @status_id        = nil
+    @body             = nil
+    evaluate_payload
+  end
+
+  def evaluate_payload
+    payload_request = create_payload
+    if Client.where(identifier: @identifier).empty?
+      @status_id = 403
+      @body      = "Application not registered. Please contact us to obtain service."
+    else
+      if payload_request.save
+        @status_id = 200
+        @body      = "Success!"
+      elsif payload_request.errors.full_messages.join(", ") == "Sha has already been taken"
+        @status_id = 403
+        @body      = payload_request.errors.full_messages.join(', ') + ": Already Received Payload Request"
+      else
+        @status_id = 400
+        @body      = payload_request.errors.full_messages.join(', ') + ": Missing Payload"
+      end
+    end
+  end
+
+  def check_client
+
   end
 
   def create_payload
-    payload_request = PayloadRequest.create({
+    PayloadRequest.new({
       :url            => Url.find_or_create_by(address: @url),
       :requested_at   => @requested_at,
       :responded_in   => @responded_in,
@@ -32,19 +58,9 @@ class PayloadBuilder
       :user_agent     => UserAgent.find_or_create_by(browser: parse_user_agent_browser, os: parse_user_agent_os),
       :resolution     => Resolution.find_or_create_by(width: @resolutionwidth, height: @resolutionheight),
       :ip             => @ip,
-      :client         => Client.find_or_create_by(identifier: @identifier, root_url: @root_url)
+      :client         => Client.where(identifier: @identifier, root_url: @root_url).first,
+      :sha            => @sha
       })
-      # if missing payload, return a 400
-      # if we already received a request, return 403
-      # if the application is not registered, return 403
-      # if succes, return 200
-
-
-    # if payload_request.save
-    #   [200, "Success!"]
-    # else
-    #   [400, "No args"]
-    # end
   end
 
   def parse_user_agent_browser
@@ -59,7 +75,3 @@ class PayloadBuilder
     JSON.parse(params['payload'])
   end
 end
-
-# {"payload"=>"{\"url\":\"http://jumpstartlab.com/blog\",\"requestedAt\":\"2013-02-16 21:38:28 -0700\",\"respondedIn\":37,\"referredBy\":\"http://jumpstartlab.com\",\"requestType\":\"GET\",\"parameters\":[],\"eventName\":\"socialLogin\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17\",\"resolutionWidth\":\"1920\",\"resolutionHeight\":\"1280\",\"ip\":\"63.29.38.211\"}",
-#  "splat"=>[],"captures"=>["jumpstartlab"],
-#  "IDENTIFIER"=>"jumpstartlab"}
