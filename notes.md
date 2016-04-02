@@ -1,5 +1,6 @@
 To create new migration:
 rake db:create_migration NAME=create_clients
+change column name :  rename_column :clients, :root_url, :rootUrl
 
 Each time you git pull when you pull new migration files/after creating new migration and entering table information into migration file:
   step 1 => rake db:migrate => for setting up development database

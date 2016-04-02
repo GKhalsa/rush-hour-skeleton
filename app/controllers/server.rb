@@ -44,22 +44,9 @@ module RushHour
 
     post '/sources' do
       client = Client.new(params)
-
-      # if status == 403
-      #   body client.errors.full_messages.join(", ")
-      #   # redirect '/errors'
-      # elsif status == 400
-      #   body client.errors.full_messages.join(", ")
-      #   # redirect '/errors'
-      # elsif status == 200
-      #   client.save
-      #   [200, "#{client.identifier}:#{client.root_url}"]
-      #   # redirect "/sources/#{client.identifier}"
-      # end
-
       if client.save
         status 200
-        body  "#{client.identifier}:#{client.root_url}"
+        body  "#{client.identifier}:#{client.rootUrl}"
         # binding.pry
         # redirect "/sources/#{client.identifier}"
       elsif client.errors.messages[:identifier] == ["has already been taken"]

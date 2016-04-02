@@ -4,13 +4,13 @@ class ClientTest < Minitest::Test
   include TestHelpers
 
   def test_it_knows_its_root_url
-    client = Client.create({root_url:"www.turing.io"})
+    client = Client.create({rootUrl:"www.turing.io"})
 
-    assert_equal "www.turing.io", client.root_url
+    assert_equal "www.turing.io", client.rootUrl
   end
 
   def test_is_invalid_with_missing_address
-    client = Client.create(root_url: "")
+    client = Client.create(rootUrl: "")
 
     refute client.valid?
   end
