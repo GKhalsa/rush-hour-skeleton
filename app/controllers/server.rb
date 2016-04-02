@@ -4,13 +4,40 @@ module RushHour
       erb :error
     end
 
+#     get '/robots/new' do
+#   @current_page = "create"
+#   erb :new
+# end
+#
+# post '/robots' do
+#   robot_wrangler.create(params[:robot])
+#   redirect '/robots'
+# end
+#
+# get '/robots/:id' do |id|
+#   @robot = robot_wrangler.find(id.to_i)
+#   @current_page = "about #{@robot.name}"
+#   erb :show
+# end
+#
+# get '/robots/:id/edit' do |id|
+#  @current_page = "edit"
+#  @robot = robot_wrangler.find(id.to_i)
+#  erb :edit
+# end
+
+
     get '/' do
       @current_page = "Welcome!"
       erb :welcome
     end
 
+    get '/index' do
+      erb :index
+    end
+
     get '/sources/:identifier' do |identifier|
-      @client = Client.find(identifier)
+      @client = Client.where(identifier: identifier)
       @current_page = ":dashboard"
       erb :index
     end
@@ -19,7 +46,7 @@ module RushHour
       client = Client.new(params)
       if client.save
         [200, "#{client.identifier}:#{client.root_url}"]
-        redirect '/index'
+        redirect "/sources/#{client.identifier}"
       elsif client.errors.messages[:identifier] == ["has already been taken"]
         status 403
         body client.errors.full_messages.join(", ")
