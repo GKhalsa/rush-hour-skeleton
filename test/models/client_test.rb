@@ -64,4 +64,10 @@ class ClientTest < Minitest::Test
     assert_equal({"Mozilla"=>3}, Client.first.browser_breakdown)
   end
 
+  def test_screen_resolution_breakdown
+    create_payloads(3)
+
+    assert_equal({[1921, 1281]=>1, [1922, 1282]=>1, [1923, 1283]=>1}, Client.first.screen_resolution_breakdown)
+  end
+
 end
