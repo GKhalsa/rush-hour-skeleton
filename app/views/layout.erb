@@ -11,7 +11,7 @@
 <body class="rush_hour_app">
   <nav class="red_overlay">
     <div class="nav-wrapper">
-      <h3 class="valign-wrapper move_over be_centered">Rush Hour</h3>
+      <h3 id="header_id" class="valign-wrapper move_over be_centered">Rush Hour: <%= @current_page %></h3>
     <!-- this is navbar links, it might go in a partial   -->
       <ul id="nav-mobile" class="right">
         <li><a href="#">Sign up</a></li>
@@ -20,46 +20,11 @@
   </nav>
 
   <div class= "my_container">
-    <!-- this is the center card, it goes on the welcome page -->
-    <div class="row">
-      <div class="col s9 valign-wrapper">
-        <div class="card-panel card_overlay round_card card-large">
-          <<div class="container">
-            <h5 class="white-text">Here is a generic card for whatever</h5>
-          </div>
-          <span class="white-text">
-            on the landing page, I suppose we could describe the app and <a href="#">link to the sign-up page</a></li>
-          </span>
-        </div>
-      </div>
-  <!-- this is the same card, where clients sign up -->
-      <div class="row">
-        <div class="col s9">
-          <div class="card-panel card_overlay round_card card-large">
-            <div class="container">
-              <h3 class="white-text">Sign up for an account</h3>
-            </div>
-            <div class="row">
-             <form class="col s12">
-               <div class="row">
-                 <div class="input-field col s6">
-                   <i class="material-icons prefix white-text">perm_identity</i>
-                   <input id="icon_identity" type="text" class="validate">
-                   <label class="white-text" for="icon_identity">Name of your site</label>
-                 </div>
-                 <div class="input-field col s6">
-                   <i class="material-icons prefix white-text">web</i>
-                   <input id="icon_web" type="tel" class="validate">
-                   <label class="white-text" for="icon_web">Root URL of your site</label>
-                 </div>
-               </div>
-             </form>
-           </div>
-          </div>
-        </div>
+    <%= yield %>
+
 
   <!-- this is the side-bar, put it in the partial _url -->
-      <div class="col s2">
+      <!-- <div class="col s2">
           <div class="collection round_sidebar red_overlay center-align">
             <p class="white-text" > (root_name) pages</p>
             <a href="#!" class="collection-item">each page name</a>
@@ -68,10 +33,10 @@
             <a href="#!" class="collection-item">each page name</a>
           </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
-    <!-- <%= yield %> -->
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>

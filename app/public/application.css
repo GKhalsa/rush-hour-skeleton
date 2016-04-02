@@ -24,7 +24,6 @@
 .round_sidebar {
   border-radius: 25px
 }
-
 .my_container {
   width: 1200px;
   height: 800px;
@@ -32,7 +31,10 @@
   margin: 20px;
   align-self: baseline;
 }
-
 .sign-up {
   font-size: 2em;
+}
+
+.client_registration {
+  line-height: 20px;
 }
