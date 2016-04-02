@@ -25,14 +25,14 @@ class CreateClientTest < Minitest::Test
 
     assert_equal 0, Client.count
     assert_equal 400, last_response.status
-    assert_equal "Identifier can't be blank, Root url can't be blank",
+    assert_equal "Identifier can't be blank, Rooturl can't be blank",
     last_response.body
 
     post '/sources',  {identifier: "Turing", rootUrl: nil}
 
     assert_equal 0, Client.count
     assert_equal 400, last_response.status
-    assert_equal "Root url can't be blank", last_response.body
+    assert_equal "Rooturl can't be blank", last_response.body
 
     post '/sources',  {identifier: nil, rootUrl: "https://www.turing.io/"}
 

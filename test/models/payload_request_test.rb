@@ -45,7 +45,7 @@ class PayloadRequestTest < Minitest::Test
       :user_agent     => UserAgent.find_or_create_by(browser: "Mozilla", os: "Macintosh"),
       :resolution     => Resolution.find_or_create_by(width: "1921", height: "1281"),
       :ip             => "63.29.38.211",
-      :client         => Client.find_or_create_by(identifier: "JumpstartLab", root_url: "www.jumpstartlab com"),
+      :client         => Client.find_or_create_by(identifier: "JumpstartLab", rootUrl: "www.jumpstartlab com"),
       :sha            => "0"
       })
 

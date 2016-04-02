@@ -4,29 +4,6 @@ module RushHour
       erb :error
     end
 
-#     get '/robots/new' do
-#   @current_page = "create"
-#   erb :new
-# end
-#
-# post '/robots' do
-#   robot_wrangler.create(params[:robot])
-#   redirect '/robots'
-# end
-#
-# get '/robots/:id' do |id|
-#   @robot = robot_wrangler.find(id.to_i)
-#   @current_page = "about #{@robot.name}"
-#   erb :show
-# end
-#
-# get '/robots/:id/edit' do |id|
-#  @current_page = "edit"
-#  @robot = robot_wrangler.find(id.to_i)
-#  erb :edit
-# end
-
-
     get '/' do
       @current_page = "Welcome!"
       erb :welcome
@@ -66,7 +43,5 @@ module RushHour
       status payload_request.status_id
       body   payload_request.body
     end
-
-
   end
 end
