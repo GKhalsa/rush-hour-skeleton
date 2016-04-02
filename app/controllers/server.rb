@@ -4,6 +4,11 @@ module RushHour
       erb :error
     end
 
+    get '/' do
+      @current_page = "Welcome!"
+      erb :welcome
+    end
+
     post '/sources' do
       client = Client.new(params)
       if client.save
