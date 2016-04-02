@@ -16,17 +16,20 @@
               <h3 id="registration_form" class="white-text">register your site here</h3>
             </div>
             <div class="row">
-             <form class="col s12">
+             <form class="col s12" action="/sources" method="post">
                <div class="row">
                  <div class="input-field col s6">
                    <i class="material-icons prefix white-text">perm_identity</i>
-                   <input id="icon_identity" type="text" class="validate">
-                   <label class="white-text" for="icon_identity">Name of your site (unique identifier)</label>
+                   <input id="icon_identity" type="text" class="validate red-text client_registration" name="identifier[identifier]">
+                   <label class="white-text client_registration" for="icon_identity">Name of your site (unique identifier)</label>
                  </div>
                  <div class="input-field col s6">
                    <i class="material-icons prefix white-text">web</i>
-                   <input id="icon_web" type="tel" class="validate">
-                   <label class="white-text" for="icon_web">Root URL of your site</label>
+                   <input id="icon_web" type="tel" class="validate red-text client_registration" name="root_url[root_url]">
+                   <label class="white-text client_registration" for="icon_web">Root URL of your site</label>
+                 </div>
+                 <div class="input-field col s2 offset-s9">
+                   <input type="submit" value="Submit"/>
                  </div>
                </div>
              </form>

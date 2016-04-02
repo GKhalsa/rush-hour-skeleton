@@ -1,6 +1,6 @@
 require_relative "../test_helper"
 
-class UserCanCreateARobotTest < Minitest::Test
+class UserSeeWelcomePageTest < Minitest::Test
   include TestHelpers
   include Capybara::DSL
 

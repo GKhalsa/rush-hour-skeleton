@@ -9,16 +9,25 @@ module RushHour
       erb :welcome
     end
 
+    get '/sources/:identifier' do |identifier|
+      @client = Client.find(identifier)
+      @current_page = ":dashboard"
+      erb :index
+    end
+
     post '/sources' do
       client = Client.new(params)
       if client.save
         [200, "#{client.identifier}:#{client.root_url}"]
+        redirect '/index'
       elsif client.errors.messages[:identifier] == ["has already been taken"]
         status 403
         body client.errors.full_messages.join(", ")
+        redirect '/errors'
       else
         status 400
         body client.errors.full_messages.join(", ")
+        redirect '/errors'
       end
     end
 
