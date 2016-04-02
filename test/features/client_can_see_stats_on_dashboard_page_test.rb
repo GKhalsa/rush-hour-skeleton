@@ -3,10 +3,6 @@ require_relative "../test_helper"
 class ClientCanSeeStatsTest < Minitest::Test
   include TestHelpers
   include Capybara::DSL
-  #
-  # def setup
-  #   `./test.sh`
-  # end
 
   def setup
     create_payloads(3)
