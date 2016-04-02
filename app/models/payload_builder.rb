@@ -42,10 +42,6 @@ class PayloadBuilder
     end
   end
 
-  def check_client
-
-  end
-
   def create_payload
     PayloadRequest.new({
       :url            => Url.find_or_create_by(address: @url),
