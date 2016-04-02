@@ -24,4 +24,44 @@ class ClientTest < Minitest::Test
 
     assert_equal expected, Client.first.most_frequent_verbs
   end
+
+  def test_client_knows_its_average_response_time
+    create_payloads(3)
+
+    assert_equal 38, Client.first.average_response_time
+  end
+
+  def test_client_knows_its_max_response_time
+    create_payloads(3)
+    assert_equal 39, Client.first.max_response_time
+  end
+
+  def test_client_knows_its_min_response_time
+    create_payloads(3)
+
+    assert_equal 37, Client.first.min_response_time
+  end
+
+  def test_all_verbs_used_on_client
+    create_payloads(3)
+    request_type = RequestType.create(name: "PUT")
+    PayloadRequest.first.update(request_type_id: request_type.id)
+
+    assert_equal ['GET', 'PUT'], Client.first.all_verbs
+  end
+
+  def test_url_breakdown
+    create_payloads(3)
+    url = Url.create(address: "http://jumpstartlab2.com/blog")
+    PayloadRequest.first.update(url_id: url.id)
+
+  assert_equal [["http://jumpstartlab2.com/blog", 2], ["http://jumpstartlab3.com/blog", 1]], Client.first.url_breakdown
+  end
+
+  def test_browser_breakdown
+    create_payloads(3)
+
+    assert_equal({"Mozilla"=>3}, Client.first.browser_breakdown)
+  end
+
 end
