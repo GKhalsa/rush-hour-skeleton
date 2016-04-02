@@ -17,11 +17,11 @@ class Client < ActiveRecord::Base
   end
 
   def max_response_time
-    payload_requests.maximum(:responded_in)
+    payload_requests.maximum(:responded_in).to_f
   end
 
   def min_response_time
-    payload_requests.minimum(:responded_in)
+    payload_requests.minimum(:responded_in).to_f
   end
 
   def all_verbs
@@ -39,8 +39,11 @@ class Client < ActiveRecord::Base
     user_agents.group(:browser).count
   end
 
+  def os_breakdown
+    user_agents.group(:os).count
+  end
+
   def screen_resolution_breakdown
     resolutions.group(:width,:height).count
   end
-
 end

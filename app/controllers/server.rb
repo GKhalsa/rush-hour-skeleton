@@ -14,7 +14,7 @@ module RushHour
     end
 
     get '/sources/:identifier' do |identifier|
-      @client = Client.where(identifier: identifier)
+      @client = Client.where(identifier: identifier).first
       @current_page = ":dashboard"
       erb :index
     end
