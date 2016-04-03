@@ -1,11 +1,14 @@
 class ClientBuilder
-  attr_reader :identifier, :message, :current_page, :client
+  attr_reader :identifier,
+              :message,
+              :current_page,
+              :client
 
   def initialize(identifier)
-    @identifier = identifier
-    @message = nil
+    @identifier   = identifier
+    @message      = nil
     @current_page = nil
-    @client = Client.find_by(identifier: identifier)
+    @client       = Client.find_by(identifier: identifier)
   end
 
   def build_client
