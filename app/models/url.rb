@@ -7,11 +7,11 @@ class Url < ActiveRecord::Base
   has_many :user_agents, through: :payload_requests
 
   def max_response_time
-    payload_requests.maximum(:responded_in)
+    payload_requests.maximum(:responded_in).to_f
   end
 
   def min_response_time
-    payload_requests.minimum(:responded_in)
+    payload_requests.minimum(:responded_in).to_f
   end
 
   def ordered_response_times

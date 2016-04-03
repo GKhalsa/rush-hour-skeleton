@@ -10,7 +10,10 @@ class Client < ActiveRecord::Base
   has_many :event_types, through: :payload_requests
 
   def most_frequent_verbs
-    request_types.group(:name).count
+    request_types.group(:name).count.map do |key, value|
+      "#{key} => #{value}"
+    end.join(", ")
+
   end
 
   def average_response_time

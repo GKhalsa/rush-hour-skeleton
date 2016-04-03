@@ -20,7 +20,7 @@ class ClientTest < Minitest::Test
     request_type = RequestType.create(name: "PUT")
     PayloadRequest.first.update(request_type_id: request_type.id)
 
-    expected = { "GET" => 2, "PUT" => 1 }
+    expected = "GET => 2, PUT => 1"
 
     assert_equal expected, Client.first.most_frequent_verbs
   end

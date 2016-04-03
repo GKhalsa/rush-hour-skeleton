@@ -5,7 +5,7 @@
       <h4 id="message" ><%= @message %></h4>
     </div>
 
-    <table class="centered">
+    <table class="centered my_table white-text">
       <thead>
         <tr>
           <th data-field="id">Description</th>
@@ -32,7 +32,7 @@
         </tr>
         <tr>
           <td>All HTTP Verbs</td>
-          <td id="all_http_verbs"><%= @client.all_verbs %></td>
+          <td id="all_http_verbs"><%= @client.all_verbs.join(", ") %></td>
         </tr>
         <tr>
           <td>URLS Most to Least Requested</td>
