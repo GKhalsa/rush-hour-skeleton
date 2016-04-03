@@ -35,14 +35,13 @@ module RushHour
       end
 
       get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do |identifier, relative_path|
-        client = Client.where(identifier: identifier).first
-        url_address = client.rootUrl + "/" + relative_path
-        # binding.pry
-        @url = Url.find_or_create_by(address: url_address)
-        # @url = Url.where(address: url_address).first
-        @current_page = "stats for #{url_address}"
-        @url_message = url_message(@url)
+        url_builder = UrlBuilder.new(identifier, relative_path)
+
+        @url = url_builder.url
+        @current_page = url_builder.current_page
+        @url_message = url_builder.url_message
         erb :show_url
+
       end
 
       post '/sources/:IDENTIFIER/data' do |identifier|
@@ -62,19 +61,11 @@ module RushHour
         erb :event_hours
       end
 
-    def url_message(url)
-      if url.payload_requests == []
-        "this url has not been requested"
-      else
-        "your page is kicking ass"
-      end
-    end
-
-    # def message
-    #   if @client.payload_requests.count == 0
-    #     message = "no payload data has been received for this source"
+    # def url_message(url)
+    #   if url.payload_requests == []
+    #     "this url has not been requested"
     #   else
-    #     message = "Welcome to your dashboard"
+    #     "your page is kicking ass"
     #   end
     # end
 
