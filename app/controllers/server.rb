@@ -20,15 +20,11 @@ module RushHour
       end
 
       get '/sources/:identifier' do |identifier|
-        if Client.where(identifier: identifier) == []
-          @message = "Client does not exist"
-          erb :error
-        else
-          @current_page = "#{identifier}\'s dashboard"
-          @client = Client.where(identifier: identifier).first
-          @message = message
-          erb :index
-        end
+        builder = ClientBuilder.new(identifier)
+        @client = builder.client
+        @message, view = builder.build_client
+        @current_page = builder.current_page
+        erb view
       end
 
       post '/sources' do
@@ -84,13 +80,13 @@ module RushHour
       end
     end
 
-    def message
-      if @client.payload_requests.count == 0
-        message = "no payload data has been received for this source"
-      else
-        message = "Welcome to your dashboard"
-      end
-    end
+    # def message
+    #   if @client.payload_requests.count == 0
+    #     message = "no payload data has been received for this source"
+    #   else
+    #     message = "Welcome to your dashboard"
+    #   end
+    # end
 
     def event_message(event)
       if event.payload_requests == []

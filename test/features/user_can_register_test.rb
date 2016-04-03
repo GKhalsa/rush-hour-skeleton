@@ -22,7 +22,6 @@ class UserCanRegisterTest < Minitest::Test
 
   def test_user_can_not_register_without_filling_both_fields
     post '/sources', {identifier: "", rootUrl: "google.com"}
-
     visit '/sources/Google'
     assert_equal'/sources/Google', current_path
 
