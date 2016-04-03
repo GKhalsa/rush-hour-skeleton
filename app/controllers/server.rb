@@ -18,18 +18,6 @@ module RushHour
       erb :index
     end
 
-    # get '/sources/:identifier' do |identifier|
-    #   @client = Client.where(identifier: identifier).first
-    #   binding.pry
-    #   if @client.payload_requests.empty?
-    #     erb :message
-    #   else
-    #     @current_page = ":dashboard"
-    #     @message      = message
-    #     erb :index
-    #   end
-    # end
-
     get '/sources/:identifier' do |identifier|
       if Client.where(identifier: identifier) == []
         @message = "Client does not exist"
@@ -56,6 +44,15 @@ module RushHour
         # redirect '/errors'
         status 400
       end
+    end
+
+    get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do |identifier, relative_path|
+      client = Client.where(identifier: identifier).first
+      url_address = client.rootUrl + "/" + relative_path
+      # binding.pry
+      @url = Url.where(address: url_address).first
+
+      erb :show_url
     end
 
     post '/sources/:IDENTIFIER/data' do |identifier|
