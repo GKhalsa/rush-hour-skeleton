@@ -52,7 +52,7 @@ class UrlTest < Minitest::Test
     create_payload_for_url(3)
     url = PayloadRequest.first.url
 
-    assert_equal [39, 38, 37], url.ordered_response_times
+    assert_equal "39, 38, 37", url.ordered_response_times
   end
 
   def test_average_response_time_for_speficif_Url
@@ -83,7 +83,7 @@ class UrlTest < Minitest::Test
 
       url = PayloadRequest.first.url
 
-      assert_equal ["GET", "POST"], url.verbs
+      assert_equal "GET, POST", url.verbs
   end
 
   def test_returns_3_best_referrers
@@ -99,8 +99,7 @@ class UrlTest < Minitest::Test
     PayloadRequest.all[8].referrer.update(address: "http://jumpstartlab3.com")
     PayloadRequest.all[9].referrer.update(address: "http://jumpstartlab3.com")
 
-    best = ["http://jumpstartlab3.com","http://jumpstartlab2.com",
-      "http://jumpstartlab1.com" ]
+    best = "http://jumpstartlab3.com, http://jumpstartlab2.com, http://jumpstartlab1.com"
     assert_equal best, url.best_referrers
   end
 
@@ -117,10 +116,8 @@ class UrlTest < Minitest::Test
     PayloadRequest.all[8].user_agent.update(browser: "Mozilla/7.0", os: "MicroSoft")
     PayloadRequest.all[9].user_agent.update(browser: "Mozilla/7.0", os: "MicroSoft")
 
-    top_three_best_agents = [["Mozilla/7.0", "MicroSoft"],["Mozilla/6.0", "Macintosh"],
-      ["Mozilla/5.0", "Macintosh"]]
+    top_three_best_agents = "Mozilla/7.0, MicroSoft, Mozilla/6.0, Macintosh, Mozilla/5.0, Macintosh"
     assert_equal top_three_best_agents, url.best_user_agents
-
   end
 
   def test_it_can_rank_urls

@@ -25,11 +25,11 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#most_frequent_request_type') do
-      assert page.has_content?('{"GET"=>3}')
+      assert page.has_content?('GET => 3')
     end
 
     within ('#all_http_verbs') do
-      assert page.has_content?('["GET"]')
+      assert page.has_content?('GET')
     end
 
     within ('#urls_most_to_least_requested') do
@@ -37,11 +37,11 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#browser_breakdown') do
-      assert page.has_content?('{"Mozilla"=>3}')
+      assert page.has_content?('Mozilla => 3')
     end
 
     within ('#os_breakdown') do
-      assert page.has_content?('{"Macintosh"=>3}')
+      assert page.has_content?('Macintosh => 3')
     end
 
     within ('#screen_resolutions_breakdown') do

@@ -7,15 +7,15 @@ class Url < ActiveRecord::Base
   has_many :user_agents, through: :payload_requests
 
   def max_response_time
-    payload_requests.maximum(:responded_in)
+    payload_requests.maximum(:responded_in).to_f
   end
 
   def min_response_time
-    payload_requests.minimum(:responded_in)
+    payload_requests.minimum(:responded_in).to_f
   end
 
   def ordered_response_times
-    payload_requests.order(responded_in: :desc).pluck(:responded_in)
+    array_formatter(payload_requests.order(responded_in: :desc).pluck(:responded_in).to_a)
   end
 
   def average_response_time
@@ -23,18 +23,22 @@ class Url < ActiveRecord::Base
   end
 
   def verbs
-    request_types.pluck(:name).uniq
+    array_formatter(request_types.pluck(:name).uniq)
   end
 
   def best_referrers
-    referrers.order(address: :desc).pluck(:address).uniq.take(3)
+    array_formatter(referrers.order(address: :desc).pluck(:address).uniq.take(3))
   end
 
   def best_user_agents
-    user_agents.order(browser: :desc, os: :desc).pluck(:browser, :os).uniq.take(3)
+    array_formatter(user_agents.order(browser: :desc, os: :desc).pluck(:browser, :os).uniq.take(3))
   end
 
   def self.ranked
     uniq.group('urls.id').order(:address).pluck(:address)
+  end
+
+  def array_formatter(passed_array)
+    passed_array.join(", ")
   end
 end
