@@ -7,6 +7,7 @@ class Client < ActiveRecord::Base
   has_many :urls, through: :payload_requests
   has_many :user_agents, through: :payload_requests
   has_many :resolutions, through: :payload_requests
+  has_many :event_types, through: :payload_requests
 
   def most_frequent_verbs
     request_types.group(:name).count
@@ -46,4 +47,5 @@ class Client < ActiveRecord::Base
   def screen_resolution_breakdown
     resolutions.group(:width,:height).count
   end
+
 end

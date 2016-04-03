@@ -5,4 +5,15 @@ class EventType < ActiveRecord::Base
   def self.rank_events
     uniq.group('event_types.id').order(:name).pluck(:name)
   end
+
+  def total
+    payload_requests.count
+  end
+
+  def by_hours
+    sort = payload_requests.group("DATE_PART('hour',requested_at)").count
+    # sort.sort_by { |k,v| k }
+  end
+
+
 end
