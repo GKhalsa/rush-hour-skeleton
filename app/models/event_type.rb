@@ -11,7 +11,9 @@ class EventType < ActiveRecord::Base
   end
 
   def by_hours
-    payload_requests.group("DATE_PART('hour',requested_at)").count
+    sort = payload_requests.group("DATE_PART('hour',requested_at)").count
+    sort.sort_by { |k,v| k }
+    # binding.pry
   end
 
 
