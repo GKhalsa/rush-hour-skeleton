@@ -10,10 +10,7 @@ class Client < ActiveRecord::Base
   has_many :event_types, through: :payload_requests
 
   def most_frequent_verbs
-    request_types.group(:name).count.map do |key, value|
-      "#{key} => #{value}"
-    end.join(", ")
-
+    hash_formatter(request_types.group(:name).count)
   end
 
   def average_response_time
@@ -37,15 +34,20 @@ class Client < ActiveRecord::Base
   end
 
   def browser_breakdown
-    user_agents.group(:browser).count
+    hash_formatter(user_agents.group(:browser).count)
   end
 
   def os_breakdown
-    user_agents.group(:os).count
+    hash_formatter(user_agents.group(:os).count)
   end
 
   def screen_resolution_breakdown
-    resolutions.group(:width,:height).count
+    hash_formatter(resolutions.group(:width,:height).count)
   end
 
+  def hash_formatter(hash)
+    hash.map do |key, value|
+      "#{key} => #{value}"
+    end.join(", ")
+  end
 end

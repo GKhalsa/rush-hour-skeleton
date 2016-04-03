@@ -37,11 +37,11 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#browser_breakdown') do
-      assert page.has_content?('{"Mozilla"=>3}')
+      assert page.has_content?('Mozilla => 3')
     end
 
     within ('#os_breakdown') do
-      assert page.has_content?('{"Macintosh"=>3}')
+      assert page.has_content?('Macintosh => 3')
     end
 
     within ('#screen_resolutions_breakdown') do
