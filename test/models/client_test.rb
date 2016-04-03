@@ -52,10 +52,10 @@ class ClientTest < Minitest::Test
 
   def test_url_breakdown
     create_payloads(3)
-    url = Url.create(address: "http://jumpstartlab2.com/blog")
+    url = Url.create(address: "http://jumpstartlab.com/blog2")
     PayloadRequest.first.update(url_id: url.id)
 
-  assert_equal [["http://jumpstartlab2.com/blog", 2], ["http://jumpstartlab3.com/blog", 1]], Client.first.url_breakdown
+  assert_equal [["http://jumpstartlab.com/blog2", 2], ["http://jumpstartlab.com/blog3", 1]], Client.first.url_breakdown
   end
 
   def test_browser_breakdown

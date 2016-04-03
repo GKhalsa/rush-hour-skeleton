@@ -11,7 +11,7 @@ class ClientCanSeeStatsTest < Minitest::Test
 
     visit '/sources/JumpstartLab/urls/blog'
     assert '/sources/JumpstartLab/urls/blog', current_path
-    
+
     within ('#message') do
       assert page.has_content?("your page is kicking ass")
     end

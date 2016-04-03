@@ -8,7 +8,7 @@ class PayloadRequestTest < Minitest::Test
     create_payloads(1)
     payload = PayloadRequest.last
 
-    assert_equal "http://jumpstartlab1.com/blog", payload.url.address
+    assert_equal "http://jumpstartlab.com/blog1", payload.url.address
     assert_equal  Time.parse("2013-02-17 04:38:28 UTC"), payload.requested_at
     assert_equal  37, payload.responded_in
     assert_equal  "http://jumpstartlab1.com", payload.referrer.address

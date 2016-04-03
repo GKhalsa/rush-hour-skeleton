@@ -50,10 +50,11 @@ module RushHour
     get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do |identifier, relative_path|
       client = Client.where(identifier: identifier).first
       url_address = client.rootUrl + "/" + relative_path
+      # binding.pry
       @url = Url.find_or_create_by(address: url_address)
       # @url = Url.where(address: url_address).first
       @current_page = "stats for #{url_address}"
-      @url_message = url_message
+      @url_message = url_message(@url)
       erb :show_url
     end
 
@@ -64,11 +65,11 @@ module RushHour
       body   payload_request.body
     end
 
-    def url_message
-      if @url.payload_requests == []
-        @url_message = "this url has not been requested"
+    def url_message(url)
+      if url.payload_requests == []
+        "this url has not been requested"
       else
-        @url_message = "your page is kicking ass"
+        "your page is kicking ass"
       end
     end
 
