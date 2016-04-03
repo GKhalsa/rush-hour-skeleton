@@ -29,18 +29,23 @@ class PayloadBuilder
       @status_id = 403
       @body      = "Application not registered. Please contact us to obtain service."
     else
-      if payload_request.save
-        @status_id = 200
-        @body      = "Success!"
-      elsif payload_request.errors.full_messages.join(", ") == "Sha has already been taken"
-        @status_id = 403
-        @body      = payload_request.errors.full_messages.join(', ') + ": Already Received Payload Request"
-      else
-        @status_id = 400
-        @body      = payload_request.errors.full_messages.join(', ') + ": Missing Payload"
-      end
+      save_payload(payload_request)
     end
   end
+
+  def save_payload(payload_request)
+    if payload_request.save
+      @status_id = 200
+      @body      = "Success!"
+    elsif payload_request.errors.full_messages.join(", ") == "Sha has already been taken"
+      @status_id = 403
+      @body      = payload_request.errors.full_messages.join(', ') + ": Already Received Payload Request"
+    else
+      @status_id = 400
+      @body      = payload_request.errors.full_messages.join(', ') + ": Missing Payload"
+    end
+  end
+
 
   def create_payload
     PayloadRequest.new({

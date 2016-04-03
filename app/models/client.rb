@@ -30,10 +30,7 @@ class Client < ActiveRecord::Base
   end
 
   def url_breakdown
-    pre_breakdown = urls.group(:address).count
-    pre_breakdown.sort_by do |k,v|
-      v
-    end.reverse
+    urls.group(:address).count.sort_by { |k,v| v }.reverse
   end
 
   def browser_breakdown
