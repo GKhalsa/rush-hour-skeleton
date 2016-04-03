@@ -4,11 +4,17 @@ class ClientCanSeeStatsTest < Minitest::Test
   include TestHelpers
   include Capybara::DSL
 
+
   def test_client_can_see_stats_for_url
     create_payload_for_urls(3)
 
+
     visit '/sources/JumpstartLab/urls/blog'
     assert '/sources/JumpstartLab/urls/blog', current_path
+    
+    within ('#message') do
+      assert page.has_content?("your page is kicking ass")
+    end
 
     within ('#max_response_time') do
       assert page.has_content?("39")
@@ -37,7 +43,17 @@ class ClientCanSeeStatsTest < Minitest::Test
     within ('#best_user_agents') do
       assert page.has_content?('	[["Mozilla/5.0", "Macintosh"]]')
     end
+
+    visit '/sources/JumpstartLab/urls/wat'
+
+    assert '/sources/JumpstartLab/urls/wat', current_path
+
+    within ('#message') do
+      assert page.has_content?("this url has not been requested")
+    end
+
   end
+
 
   def create_payload_for_urls(num)
     PayloadRequest.destroy_all

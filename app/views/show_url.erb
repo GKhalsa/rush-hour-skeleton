@@ -1,41 +1,44 @@
-<h1 id="message" ><%= @message %></h1>
+<div class="container">
 
-<table>
-  <thead>
-    <tr>
-      <th data-field="id">Description</th>
-      <th data-field="name">Value</th>
-    </tr>
-  </thead>
+    <h4 id="message" ><%= @url_message %></h4>
 
-  <tbody>
-    <tr>
-      <td>Max Response Time</td>
-      <td id="max_response_time"><%= @url.max_response_time %></td>
-    </tr>
-    <tr>
-      <td>Min Response Time</td>
-      <td id="min_response_time"><%= @url.min_response_time %></td>
-    </tr>
-    <tr>
-      <td>Ordered Response Time</td>
-      <td id="ordered_response_times"><%= @url.ordered_response_times %></td>
-    </tr>
-    <tr>
-      <td>Average Response Time</td>
-      <td id="average_response_time"><%= @url.average_response_time %></td>
-    </tr>
-    <tr>
-      <td>All HTTP Verbs</td>
-      <td id="verbs"><%= @url.verbs %></td>
-    </tr>
-    <tr>
-      <td>3 Most Popular Referrers</td>
-      <td id="best_referrers"><%= @url.best_referrers %></td>
-    </tr>
-    <tr>
-      <td>3 Most Popular User Agents</td>
-      <td id="best_user_agents"><%= @url.best_user_agents %></td>
-    </tr>
-  </tbody>
-</table>
+    <table class="centered">
+      <thead>
+        <tr>
+          <th data-field="id">Description</th>
+          <th data-field="name">Value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Max Response Time</td>
+          <td id="max_response_time"><%= @url.max_response_time %></td>
+        </tr>
+        <tr>
+          <td>Min Response Time</td>
+          <td id="min_response_time"><%= @url.min_response_time %></td>
+        </tr>
+        <tr>
+          <td>Ordered Response Time</td>
+          <td id="ordered_response_times"><%= @url.ordered_response_times %></td>
+        </tr>
+        <tr>
+          <td>Average Response Time</td>
+          <td id="average_response_time"><%= @url.average_response_time %></td>
+        </tr>
+        <tr>
+          <td>All HTTP Verbs</td>
+          <td id="verbs"><%= @url.verbs %></td>
+        </tr>
+        <tr>
+          <td>3 Most Popular Referrers</td>
+          <td id="best_referrers"><%= @url.best_referrers %></td>
+        </tr>
+        <tr>
+          <td>3 Most Popular User Agents</td>
+          <td id="best_user_agents"><%= @url.best_user_agents %></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
