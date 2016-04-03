@@ -25,6 +25,16 @@ class EventTest < Minitest::Test
 
     event    = EventType.find_by(name: "socialLogin1")
     expected = {4.0 => 1}
-    assert_equal expected, event.event_type_by_hours
+    assert_equal expected, event.by_hours
   end
+
+  def test_it_can_return_total_number_of_events
+    create_payloads(3)
+
+    event    = EventType.find_by(name: "socialLogin1")
+
+    assert_equal 1, event.total
+  end
+
+
 end

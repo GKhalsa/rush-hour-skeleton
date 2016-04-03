@@ -1,0 +1,21 @@
+<table class="centered">
+  <thead>
+    <tr>
+      <th data-field="id">Hour</th>
+      <th data-field="name">Occurence</th>
+    </tr>
+  </thead>
+
+  <tbody id="by_hours">
+    <% @event_per_hour.each do |hour, occurence| %>
+      <tr>
+        <td><%=hour%></td>
+        <td><%= occurence%></td>
+      </tr>
+      <%end%>
+      <tr>
+        <td>Total</td>
+        <td><%= @event_type.total %></td>
+      </tr>
+  </tbody>
+</table>

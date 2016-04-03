@@ -70,10 +70,4 @@ class ClientTest < Minitest::Test
     assert_equal({[1921, 1281]=>1, [1922, 1282]=>1, [1923, 1283]=>1}, Client.first.screen_resolution_breakdown)
   end
 
-  def test_it_can_find_a_client_event_types
-    skip
-    create_payloads(3)
-    assert_equal ["socialLogin1", "socialLogin2", "socialLogin3"], Client.event_types.to_a
-  end
-
 end

@@ -66,9 +66,14 @@ module RushHour
       body   payload_request.body
     end
 
-    # get '/sources/:IDENTIFIER/events/EVENTNAME'
-    #
-    # end
+    get '/sources/:IDENTIFIER/events/:EVENTNAME' do |identifier, event_name|
+      @client = Client.find_by(identifier: identifier)
+      @event_type = @client.event_types.find_by(name: event_name)
+      @event_per_hour = @event_type.by_hours
+      @current_page   = "#{event_name}"
+
+      erb :event_hours
+    end
 
   def url_message(url)
     if url.payload_requests == []
