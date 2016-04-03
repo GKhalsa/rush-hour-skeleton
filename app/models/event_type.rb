@@ -12,8 +12,7 @@ class EventType < ActiveRecord::Base
 
   def by_hours
     sort = payload_requests.group("DATE_PART('hour',requested_at)").count
-    sort.sort_by { |k,v| k }
-    # binding.pry
+    # sort.sort_by { |k,v| k }
   end
 
 
