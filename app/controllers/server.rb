@@ -18,23 +18,12 @@ module RushHour
       erb :index
     end
 
-    # get '/sources/:identifier' do |identifier|
-    #   @client = Client.where(identifier: identifier).first
-    #   binding.pry
-    #   if @client.payload_requests.empty?
-    #     erb :message
-    #   else
-    #     @current_page = ":dashboard"
-    #     @message      = message
-    #     erb :index
-    #   end
-    # end
-
     get '/sources/:identifier' do |identifier|
       if Client.where(identifier: identifier) == []
         @message = "Client does not exist"
         erb :error
       else
+        @current_page = "#{identifier}\'s dashboard"
         @client = Client.where(identifier: identifier).first
         @message = message
         erb :index
@@ -58,11 +47,29 @@ module RushHour
       end
     end
 
+    get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do |identifier, relative_path|
+      client = Client.where(identifier: identifier).first
+      url_address = client.rootUrl + "/" + relative_path
+      @url = Url.find_or_create_by(address: url_address)
+      # @url = Url.where(address: url_address).first
+      @current_page = "stats for #{url_address}"
+      @url_message = url_message
+      erb :show_url
+    end
+
     post '/sources/:IDENTIFIER/data' do |identifier|
       payload_request = PayloadBuilder.new(params)
 
       status payload_request.status_id
       body   payload_request.body
+    end
+
+    def url_message
+      if @url.payload_requests == []
+        @url_message = "this url has not been requested"
+      else
+        @url_message = "your page is kicking ass"
+      end
     end
 
     def message

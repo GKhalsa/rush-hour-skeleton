@@ -1,49 +1,60 @@
-<h1 id="message" ><%= @message %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th data-field="id">Description</th>
-      <th data-field="name">Value</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <tr>
-      <td>Average Response Time</td>
-      <td id="average_response_time"><%= @client.average_response_time %></td>
-    </tr>
-    <tr>
-      <td>Max Response Time</td>
-      <td id="max_response_time"><%= @client.max_response_time %></td>
-    </tr>
-    <tr>
-      <td>Min Response Time</td>
-      <td id="min_response_time"><%= @client.min_response_time %></td>
-    </tr>
-    <tr>
-      <td>Most Frequent Request Type</td>
-      <td id="most_frequent_request_type"><%= @client.most_frequent_verbs %></td>
-    </tr>
-    <tr>
-      <td>All HTTP Verbs</td>
-      <td id="all_http_verbs"><%= @client.all_verbs %></td>
-    </tr>
-    <tr>
-      <td>URLS Most to Least Requested</td>
-      <td id="urls_most_to_least_requested"><%= @client.url_breakdown %></td>
-    </tr>
-    <tr>
-      <td>Browser Breakdown</td>
-      <td id="browser_breakdown"><%= @client.browser_breakdown %></td>
-    </tr>
-    <tr>
-      <td>OS Breakdown</td>
-      <td id="os_breakdown"><%= @client.os_breakdown %></td>
-    </tr>
-    <tr>
-      <td>Screen Resolution Breakdown</td>
-      <td id="screen_resolutions_breakdown"><%= @client.screen_resolution_breakdown %></td>
-    </tr>
-  </tbody>
-</table>
+  <div class="container">
+    <div class="card-panel card_overlay round_card card-large">
+      <h4 id="message" ><%= @message %></h4>
+    </div>
+
+    <table class="centered">
+      <thead>
+        <tr>
+          <th data-field="id">Description</th>
+          <th data-field="name">Value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Average Response Time</td>
+          <td id="average_response_time"><%= @client.average_response_time %></td>
+        </tr>
+        <tr>
+          <td>Max Response Time</td>
+          <td id="max_response_time"><%= @client.max_response_time %></td>
+        </tr>
+        <tr>
+          <td>Min Response Time</td>
+          <td id="min_response_time"><%= @client.min_response_time %></td>
+        </tr>
+        <tr>
+          <td>Most Frequent Request Type</td>
+          <td id="most_frequent_request_type"><%= @client.most_frequent_verbs %></td>
+        </tr>
+        <tr>
+          <td>All HTTP Verbs</td>
+          <td id="all_http_verbs"><%= @client.all_verbs %></td>
+        </tr>
+        <tr>
+          <td>URLS Most to Least Requested</td>
+          <td id="urls_most_to_least_requested">
+            <% @client.url_breakdown.each do |url|%>
+              <%relative = url[0].split(@client.rootUrl)[1][1..-1]%>
+              <a href='/sources/<%= @client.identifier%>/urls/<%= relative %>'><%= url[0] %></a><br>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Browser Breakdown</td>
+          <td id="browser_breakdown"><%= @client.browser_breakdown %></td>
+        </tr>
+        <tr>
+          <td>OS Breakdown</td>
+          <td id="os_breakdown"><%= @client.os_breakdown %></td>
+        </tr>
+        <tr>
+          <td>Screen Resolution Breakdown</td>
+          <td id="screen_resolutions_breakdown"><%= @client.screen_resolution_breakdown %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

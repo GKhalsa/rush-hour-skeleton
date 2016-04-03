@@ -41,7 +41,7 @@ module TestHelpers
         :user_agent     => UserAgent.find_or_create_by(browser: "Mozilla", os: "Macintosh"),
         :resolution     => Resolution.find_or_create_by(width: "#{i + 1 + 1920}", height: "#{i + 1 + 1280}"),
         :ip             => "63.29.38.211",
-        :client         => Client.find_or_create_by(identifier: "JumpstartLab", rootUrl: "www.jumpstartlab com"),
+        :client         => Client.find_or_create_by(identifier: "JumpstartLab", rootUrl: "http://jumpstartlab.com/"),
         :sha            => "#{i}"
         })
     end

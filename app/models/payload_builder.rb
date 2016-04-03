@@ -54,7 +54,7 @@ class PayloadBuilder
       :user_agent     => UserAgent.find_or_create_by(browser: parse_user_agent_browser, os: parse_user_agent_os),
       :resolution     => Resolution.find_or_create_by(width: @resolutionwidth, height: @resolutionheight),
       :ip             => @ip,
-      :client         => Client.where(identifier: @identifier, rootUrl: @root_url).first,
+      :client         => Client.where(identifier: @identifier).first,
       :sha            => @sha
       })
   end
