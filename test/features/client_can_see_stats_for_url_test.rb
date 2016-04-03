@@ -4,22 +4,12 @@ class ClientCanSeeStatsTest < Minitest::Test
   include TestHelpers
   include Capybara::DSL
 
-  # def setup
-  #   binding.pry
-  #   Url.create(address: "http://jumpstartlab.com/blog")
-  #   create_payload_for_url(3)
-  #   super
-  # end
-
   def test_client_can_see_stats_for_url
-
-    Url.create(address: "http://jumpstartlab.com/blog")
     create_payload_for_urls(3)
 
     visit '/sources/JumpstartLab/urls/blog'
     assert '/sources/JumpstartLab/urls/blog', current_path
 
-    # save_and_open_page
     within ('#max_response_time') do
       assert page.has_content?("39")
     end
@@ -50,6 +40,9 @@ class ClientCanSeeStatsTest < Minitest::Test
   end
 
   def create_payload_for_urls(num)
+    PayloadRequest.destroy_all
+    Url.destroy_all
+    Client.destroy_all
     num.times do |i|
       PayloadRequest.create({
         :url            => Url.find_or_create_by(address: "http://jumpstartlab.com/blog"),
