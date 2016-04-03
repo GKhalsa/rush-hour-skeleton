@@ -45,7 +45,6 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#screen_resolutions_breakdown') do
-      save_and_open_page
       assert page.has_content?('{[1921, 1281]=>1, [1922, 1282]=>1, [1923, 1283]=>1}')
     end
   end

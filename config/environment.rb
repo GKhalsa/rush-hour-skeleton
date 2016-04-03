@@ -1,6 +1,7 @@
 # require your gems
 require 'bundler'
 Bundler.require
+require 'tilt/erb'
 
 # set the pathname for the root of the app
 require 'pathname'
