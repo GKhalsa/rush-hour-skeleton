@@ -28,20 +28,10 @@ module RushHour
       end
 
       post '/sources' do
-        @client = Client.new(params)
-        if @client.save
-          status 200
-          body  "#{@client.identifier}:#{@client.rootUrl}"
-          #{redirect "/sources/#{@client.identifier}"}
-        elsif @client.errors.messages[:identifier] == ["has already been taken"]
-          body @client.errors.full_messages.join(", ")
-          # redirect '/errors'
-          status 403
-        else
-          body @client.errors.full_messages.join(", ")
-          # redirect '/errors'
-          status 400
-        end
+        cs = ClientStatus.new(params)
+        status_code, body_content = cs.statuses
+        status  status_code
+        body body_content
       end
 
       get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do |identifier, relative_path|
