@@ -19,4 +19,12 @@ class EventTest < Minitest::Test
 
     assert_equal ["socialLogin1", "socialLogin2"], EventType.rank_events
   end
+
+  def test_it_can_find_a_event_type_by_hour
+    create_payloads(3)
+
+    event    = EventType.find_by(name: "socialLogin1")
+    expected = {4.0 => 1}
+    assert_equal expected, event.event_type_by_hours
+  end
 end

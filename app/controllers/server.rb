@@ -1,4 +1,5 @@
 module RushHour
+
   class Server < Sinatra::Base
     not_found do
       erb :error
@@ -65,20 +66,24 @@ module RushHour
       body   payload_request.body
     end
 
-    def url_message(url)
-      if url.payload_requests == []
-        "this url has not been requested"
-      else
-        "your page is kicking ass"
-      end
-    end
+    # get '/sources/:IDENTIFIER/events/EVENTNAME'
+    #
+    # end
 
-    def message
-      if @client.payload_requests.count == 0
-        message = "no payload data has been received for this source"
-      else
-        message = "Welcome to your dashboard"
-      end
+  def url_message(url)
+    if url.payload_requests == []
+      "this url has not been requested"
+    else
+      "your page is kicking ass"
     end
   end
+
+  def message
+    if @client.payload_requests.count == 0
+      message = "no payload data has been received for this source"
+    else
+      message = "Welcome to your dashboard"
+    end
+  end
+end
 end
