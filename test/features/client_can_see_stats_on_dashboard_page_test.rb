@@ -5,7 +5,6 @@ class ClientCanSeeStatsTest < Minitest::Test
   include Capybara::DSL
 
   def setup
-    Client.create(identifier: "JumpstartLab", rootUrl: "http://jumpstartlab.com/")
     create_payloads(3)
   end
 

@@ -50,7 +50,7 @@ module RushHour
     get '/sources/:IDENTIFIER/urls/:RELATIVEPATH' do |identifier, relative_path|
       client = Client.where(identifier: identifier).first
       url_address = client.rootUrl + "/" + relative_path
-      binding.pry
+      # binding.pry
       @url = Url.find_or_create_by(address: url_address)
       # @url = Url.where(address: url_address).first
       @current_page = "stats for #{url_address}"

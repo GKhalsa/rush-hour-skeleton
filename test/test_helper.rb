@@ -23,9 +23,6 @@ module TestHelpers
 
   def teardown
     DatabaseCleaner.clean
-    # PayloadRequest.destroy_all
-    # Url.destroy_all
-    # Client.destroy_all
     super
   end
 

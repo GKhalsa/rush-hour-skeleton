@@ -11,7 +11,6 @@ class ClientCanSeeStatsTest < Minitest::Test
 
     visit '/sources/JumpstartLab/urls/blog'
     assert '/sources/JumpstartLab/urls/blog', current_path
-    save_and_open_page
 
     within ('#message') do
       assert page.has_content?("your page is kicking ass")
@@ -57,9 +56,9 @@ class ClientCanSeeStatsTest < Minitest::Test
 
 
   def create_payload_for_urls(num)
-    # PayloadRequest.destroy_all
-    # Url.destroy_all
-    # Client.destroy_all
+    PayloadRequest.destroy_all
+    Url.destroy_all
+    Client.destroy_all
     num.times do |i|
       PayloadRequest.create({
         :url            => Url.find_or_create_by(address: "http://jumpstartlab.com/blog"),
