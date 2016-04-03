@@ -3,8 +3,6 @@ ENV["RACK_ENV"] ||= "test"
 require 'bundler'
 Bundler.require
 
-
-
 require File.expand_path("../../config/environment", __FILE__)
 require 'minitest/autorun'
 require 'minitest/pride'
@@ -25,13 +23,16 @@ module TestHelpers
 
   def teardown
     DatabaseCleaner.clean
+    # PayloadRequest.destroy_all
+    # Url.destroy_all
+    # Client.destroy_all
     super
   end
 
   def create_payloads(num)
     num.times do |i|
       PayloadRequest.create({
-        :url            => Url.find_or_create_by(address: "http://jumpstartlab#{i + 1}.com/blog"),
+        :url            => Url.find_or_create_by(address: "http://jumpstartlab.com/blog#{i + 1}"),
         :requested_at   => "2013-02-16 21:38:28 -0700",
         :responded_in   => (37 + i),
         :referrer       => Referrer.find_or_create_by(address: "http://jumpstartlab#{i + 1}.com"),
@@ -41,7 +42,7 @@ module TestHelpers
         :user_agent     => UserAgent.find_or_create_by(browser: "Mozilla", os: "Macintosh"),
         :resolution     => Resolution.find_or_create_by(width: "#{i + 1 + 1920}", height: "#{i + 1 + 1280}"),
         :ip             => "63.29.38.211",
-        :client         => Client.find_or_create_by(identifier: "JumpstartLab", rootUrl: "http://jumpstartlab.com/"),
+        :client         => Client.find_or_create_by(identifier: "JumpstartLab", rootUrl: "http://jumpstartlab.com"),
         :sha            => "#{i}"
         })
     end

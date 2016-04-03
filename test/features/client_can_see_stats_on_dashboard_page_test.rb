@@ -5,6 +5,7 @@ class ClientCanSeeStatsTest < Minitest::Test
   include Capybara::DSL
 
   def setup
+    Client.create(identifier: "JumpstartLab", rootUrl: "http://jumpstartlab.com/")
     create_payloads(3)
   end
 
@@ -33,7 +34,7 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#urls_most_to_least_requested') do
-      assert page.has_content?('http://jumpstartlab2.com/blog')
+      assert page.has_content?('http://jumpstartlab.com/blog2')
     end
 
     within ('#browser_breakdown') do
