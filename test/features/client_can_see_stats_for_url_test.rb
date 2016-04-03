@@ -25,7 +25,7 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#ordered_response_times') do
-      assert page.has_content?("[39, 38, 37]")
+      assert page.has_content?("39, 38, 37")
     end
 
     within ('#average_response_time') do
@@ -33,15 +33,15 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#verbs') do
-      assert page.has_content?('["GET"]')
+      assert page.has_content?('GET')
     end
 
     within ('#best_referrers') do
-      assert page.has_content?('["http://jumpstartlab.com"]')
+      assert page.has_content?('http://jumpstartlab.com')
     end
 
     within ('#best_user_agents') do
-      assert page.has_content?('	[["Mozilla/5.0", "Macintosh"]]')
+      assert page.has_content?('Mozilla/5.0, Macintosh')
     end
 
     visit '/sources/JumpstartLab/urls/wat'
