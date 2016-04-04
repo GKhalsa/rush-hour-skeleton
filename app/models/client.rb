@@ -42,7 +42,14 @@ class Client < ActiveRecord::Base
   end
 
   def screen_resolution_breakdown
-    hash_formatter(resolutions.group(:width,:height).count)
+    resolution_formatter(resolutions.group(:width,:height).count)
+  end
+
+  def resolution_formatter(hash)
+    hash.map do |key, value|
+      resolution = key.join(" X ")
+      "#{resolution} => #{value}"
+    end.join(", ")
   end
 
   def hash_formatter(hash)

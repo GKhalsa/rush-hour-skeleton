@@ -45,7 +45,7 @@ class ClientCanSeeStatsTest < Minitest::Test
     end
 
     within ('#screen_resolutions_breakdown') do
-      assert page.has_content?('1922, 1282')
+      assert page.has_content?('1922 X 1282')
     end
   end
 end
