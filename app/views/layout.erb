@@ -1,9 +1,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Rush Hour</title>
+  <title>Rush Hour <%= @current_page %></title>
   <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <link rel="stylesheet" href="/application.css">
@@ -12,32 +12,15 @@
   <nav class="red_overlay">
     <div class="nav-wrapper">
       <h3 id="header_id" class="valign-wrapper move_over be_centered">Rush Hour: <%= @current_page %></h3>
-    <!-- this is navbar links, it might go in a partial   -->
+      <!-- this is navbar links, it might go in a partial   -->
       <ul id="nav-mobile" class="right">
         <li><a href="#">Sign up</a></li>
       </ul>
     </div>
   </nav>
-
   <div class= "my_container">
     <%= yield %>
-
-
-  <!-- this is the side-bar, put it in the partial _url -->
-      <!-- <div class="col s2">
-          <div class="collection round_sidebar red_overlay center-align">
-            <p class="white-text" > (root_name) pages</p>
-            <a href="#!" class="collection-item">each page name</a>
-            <a href="#!" class="collection-item">each page name</a>
-            <a href="#!" class="collection-item">each page name</a>
-            <a href="#!" class="collection-item">each page name</a>
-          </div>
-      </div>
-    </div> -->
   </div>
-
-
-
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 </body>

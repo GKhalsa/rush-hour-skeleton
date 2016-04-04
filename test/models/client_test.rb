@@ -33,6 +33,7 @@ class ClientTest < Minitest::Test
 
   def test_client_knows_its_max_response_time
     create_payloads(3)
+
     assert_equal 39, Client.first.max_response_time
   end
 
@@ -55,7 +56,7 @@ class ClientTest < Minitest::Test
     url = Url.create(address: "http://jumpstartlab.com/blog2")
     PayloadRequest.first.update(url_id: url.id)
 
-  assert_equal [["http://jumpstartlab.com/blog2", 2], ["http://jumpstartlab.com/blog3", 1]], Client.first.url_breakdown
+    assert_equal [["http://jumpstartlab.com/blog2", 2], ["http://jumpstartlab.com/blog3", 1]], Client.first.url_breakdown
   end
 
   def test_browser_breakdown
@@ -67,7 +68,7 @@ class ClientTest < Minitest::Test
   def test_screen_resolution_breakdown
     create_payloads(3)
 
-    assert_equal "[1921, 1281] => 1, [1922, 1282] => 1, [1923, 1283] => 1", Client.first.screen_resolution_breakdown
+    assert_equal "1921 X 1281 => 1, 1922 X 1282 => 1, 1923 X 1283 => 1", Client.first.screen_resolution_breakdown
   end
 
 end

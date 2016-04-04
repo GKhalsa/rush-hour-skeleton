@@ -1,6 +1,8 @@
-<h4 id="message" ><%= @event_message %></h4>
+<div class="card-panel card_overlay round_card card-large white-text">
+  <h4 id="message" ><%= @event_message %></h4>
+</div>
 
-<table class="centered">
+<table class="centered bordered my_table white-text">
   <thead>
     <tr>
       <th data-field="id">Hour</th>
@@ -9,15 +11,15 @@
   </thead>
 
   <tbody id="by_hours">
-  <% 24.times do |i| %>
+    <% 24.times do |i| %>
     <tr>
       <td><%= i %>:00</td>
       <td><%= @event_per_hour[i.to_f]%></td>
     </tr>
-  <% end %>
-      <tr>
-        <td>Total</td>
-        <td><%= @event_type.total %></td>
-      </tr>
+    <% end %>
+    <tr>
+      <td>Total</td>
+      <td><%= @event_type.total %></td>
+    </tr>
   </tbody>
 </table>

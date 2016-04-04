@@ -9,7 +9,7 @@
   background-color: rgba(57, 69, 66, 0.82)
 }
 .move_over {
-  margin-left: 6%
+  margin-left: 18%
 }
 .be_centered {
   padding-top: 10px
@@ -34,12 +34,20 @@
 .sign-up {
   font-size: 2em;
 }
-
 .client_registration {
   line-height: 20px;
 }
-
 .my_table {
-  background-color: rgba(57, 69, 66, 0.82)
-  
+  background-color: rgba(57, 69, 66, 0.92);
+  border-radius: 35px;
+  font-size: 1.9em
+}
+a:hover {
+  color: red
+}
+a:link {
+  text-decoration: underline;
+}
+#tiny_note {
+  font-size: .6em
 }

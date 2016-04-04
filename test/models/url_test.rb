@@ -24,11 +24,13 @@ class UrlTest < Minitest::Test
 
   def test_it_knows_its_url
     url = Url.create({:address => "http://www.google.com"})
+
     assert_equal "http://www.google.com", url.address
   end
 
   def test_is_invalid_with_missing_url
     url = Url.create(address: "")
+
     refute url.valid?
   end
 
@@ -57,7 +59,6 @@ class UrlTest < Minitest::Test
 
   def test_average_response_time_for_speficif_Url
     create_payload_for_url(3)
-
     url = PayloadRequest.first.url
 
     assert_equal 38, url.average_response_time
@@ -100,6 +101,7 @@ class UrlTest < Minitest::Test
     PayloadRequest.all[9].referrer.update(address: "http://jumpstartlab3.com")
 
     best = "http://jumpstartlab3.com, http://jumpstartlab2.com, http://jumpstartlab1.com"
+
     assert_equal best, url.best_referrers
   end
 
@@ -117,6 +119,7 @@ class UrlTest < Minitest::Test
     PayloadRequest.all[9].user_agent.update(browser: "Mozilla/7.0", os: "MicroSoft")
 
     top_three_best_agents = "Mozilla/7.0, MicroSoft, Mozilla/6.0, Macintosh, Mozilla/5.0, Macintosh"
+    
     assert_equal top_three_best_agents, url.best_user_agents
   end
 
