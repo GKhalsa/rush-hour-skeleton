@@ -5,11 +5,13 @@ class EventTest < Minitest::Test
 
   def test_it_knows_its_event_type
     event_type = EventType.create({:name => "http://www.google.com"})
+    
     assert_equal "http://www.google.com", event_type.name
   end
 
   def test_is_invalid_with_missing_event_type
     event_type = EventType.create(name: "")
+
     refute event_type.valid?
   end
 
@@ -23,15 +25,17 @@ class EventTest < Minitest::Test
   def test_it_can_find_a_event_type_by_hour
     create_payloads(3)
 
-    event    = EventType.find_by(name: "socialLogin1")
+    event = EventType.find_by(name: "socialLogin1")
+
     expected = {4.0 => 1}
+
     assert_equal expected, event.by_hours
   end
 
   def test_it_can_return_total_number_of_events
     create_payloads(3)
 
-    event    = EventType.find_by(name: "socialLogin1")
+    event = EventType.find_by(name: "socialLogin1")
 
     assert_equal 1, event.total
   end

@@ -13,7 +13,6 @@ class UserCanSeeEventsByHours < Minitest::Test
     assert '/sources/JumpstartLab/events/socialLogin1', current_path
 
     within('#by_hours') do
-
       assert page.has_content?("4:00")
     end
   end
