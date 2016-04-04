@@ -1,4 +1,8 @@
+require_relative "response_times"
+
 class Client < ActiveRecord::Base
+  include ResponseTimes
+
   validates :identifier, presence: true, uniqueness: true
   validates :rootUrl, presence: true
   has_many :payload_requests
@@ -11,18 +15,6 @@ class Client < ActiveRecord::Base
 
   def most_frequent_verbs
     hash_formatter(request_types.group(:name).count)
-  end
-
-  def average_response_time
-    payload_requests.average(:responded_in)
-  end
-
-  def max_response_time
-    payload_requests.maximum(:responded_in).to_f
-  end
-
-  def min_response_time
-    payload_requests.minimum(:responded_in).to_f
   end
 
   def all_verbs
