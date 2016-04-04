@@ -9,7 +9,7 @@ class EventBuilder
     @event_type     = EventType.find_or_create_by(name: event_name)
     @event_message  = message(event_type)
     @event_per_hour = @event_type.by_hours
-    @current_page   = "#{event_name}"
+    @current_page   = "stats for the #{event_name} event"
   end
 
   def message(event)
