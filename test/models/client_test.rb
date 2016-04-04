@@ -68,7 +68,7 @@ class ClientTest < Minitest::Test
   def test_screen_resolution_breakdown
     create_payloads(3)
 
-    assert_equal "1921 X 1281 => 1, 1922 X 1282 => 1, 1923 X 1283 => 1", Client.first.screen_resolution_breakdown
+    assert Client.first.screen_resolution_breakdown.include?("1923 X 1283 => 1")
   end
 
 end

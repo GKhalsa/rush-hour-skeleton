@@ -1,5 +1,3 @@
-require_relative "response_times"
-
 class Url < ActiveRecord::Base
   include ResponseTimes
 
