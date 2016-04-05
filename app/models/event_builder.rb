@@ -5,7 +5,7 @@ class EventBuilder
               :event_type
 
   def initialize(identifier, event_name)
-    client          = Client.where(identifier: identifier).first
+    # client          = Client.where(identifier: identifier).first
     @event_type     = EventType.find_or_create_by(name: event_name)
     @event_message  = message(event_type)
     @event_per_hour = @event_type.by_hours

@@ -1,5 +1,6 @@
 <div class="card-panel card_overlay round_card card-large white-text">
   <h4 id="message" ><%= @event_message %></h4>
+  <a class="table_links" href="/sources/<%= @client.identifier %>/events">Events Index</a>
 </div>
 
 <table class="centered bordered my_table white-text">
@@ -14,12 +15,12 @@
     <% 24.times do |i| %>
     <tr>
       <td><%= i %>:00</td>
-      <td><%= @event_per_hour[i.to_f]%></td>
+      <td><%= @client.total_event_by_hours(@event_type.name)[i.to_f]%></td>
     </tr>
     <% end %>
     <tr>
       <td>Total</td>
-      <td><%= @event_type.total %></td>
+      <td><%= @client.total_event(@event_type.name) %></td>
     </tr>
   </tbody>
 </table>

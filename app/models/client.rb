@@ -37,6 +37,14 @@ class Client < ActiveRecord::Base
     resolution_formatter(resolutions.group(:width,:height).count)
   end
 
+  def total_event(event_name)
+    event_types.where(name: event_name).count
+  end
+
+  def total_event_by_hours(event_name)
+    event_types.where(name: event_name).group("DATE_PART('hour',requested_at)").count
+  end
+
   def resolution_formatter(hash)
     hash.map do |key, value|
       resolution = key.join(" X ")
