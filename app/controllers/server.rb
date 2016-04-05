@@ -57,5 +57,10 @@ module RushHour
       @current_page   = event_builder.current_page
       erb :event_hours
     end
+
+    get '/sources/:IDENTIFIER/events' do |identifier|
+      @client = Client.find_by(identifier: identifier)
+      erb :events_index
+    end
   end
 end

@@ -18,7 +18,7 @@ class PayloadRequest < ActiveRecord::Base
   belongs_to :event_type
   belongs_to :client
 
-   def self.average_response_time
+  def self.average_response_time
     average(:responded_in)
   end
 

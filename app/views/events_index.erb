@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="card-panel card_overlay round_card card-large">
+    <h1>Events</h1>
+
+    <% @client.event_types.uniq.each do |event|%>
+    <a class="table_links" href="/sources/<%= @client.identifier %>/events/<%= event.name %>"><%= event.name %></a><br>
+    <% end %>
+    </div>
+</div>

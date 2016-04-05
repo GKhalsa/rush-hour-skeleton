@@ -71,4 +71,17 @@ class ClientTest < Minitest::Test
     assert Client.first.screen_resolution_breakdown.include?("1923 X 1283 => 1")
   end
 
+  def test_it_can_find_total_events
+    create_payloads(3)
+
+    assert_equal 1, Client.first.total_event("socialLogin1")
+    assert_equal 1, Client.first.total_event("socialLogin2")
+  end
+
+  def test_it_can_find_events_by_hour
+    create_payloads(3)
+    expected = {4.0 => 1}
+
+    assert_equal expected, Client.first.total_event_by_hours("socialLogin1")
+  end
 end
