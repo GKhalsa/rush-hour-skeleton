@@ -50,6 +50,7 @@ module RushHour
 
     get '/sources/:IDENTIFIER/events/:EVENTNAME' do |identifier, event_name|
       event_builder   = EventBuilder.new(identifier, event_name)
+      @client         = Client.find_by(identifier: identifier)
       @event_type     = event_builder.event_type
       @event_message  = event_builder.event_message
       @event_per_hour = event_builder.event_per_hour
